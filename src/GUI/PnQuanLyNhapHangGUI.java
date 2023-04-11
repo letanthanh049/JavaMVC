@@ -7,8 +7,8 @@ import Application.AppTier.Controller.NhanVienController;
 import Application.AppTier.Controller.SanPhamController;
 import Application.AppTier.Model.CTPhieuNhap;
 import Application.AppTier.Model.PhieuNhap;
-import Application.AppTier.Model.NhanVien;
 import Application.AppTier.Model.SanPham;
+import Application.AppTier.Resource.NhanVienResource;
 
 import MyCustom.MyDialog;
 import MyCustom.MyTable;
@@ -853,9 +853,9 @@ public class PnQuanLyNhapHangGUI extends javax.swing.JPanel {
 
     private void loadDataCmbNhanVien() {
         cmbNhanVien.removeAllItems();
-        ArrayList<NhanVien> dsnv = nhanVienController.getDanhSachNhanVien();
+        ArrayList<NhanVienResource> dsnv = nhanVienController.getDanhSachNhanVien();
         if (dsnv != null) {
-            for (NhanVien nv : dsnv) {
+            for (NhanVienResource nv : dsnv) {
                 cmbNhanVien.addItem(nv.getMaNV() + " - " + nv.getHo() + " " + nv.getTen());
             }
         }
