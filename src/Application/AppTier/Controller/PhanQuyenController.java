@@ -1,6 +1,6 @@
 package Application.AppTier.Controller;
 
-import Application.CodeTier.DAL.PhanQuyenDA;
+import Application.CodeTier.BL.PhanQuyenService;
 import Application.AppTier.Model.PhanQuyen;
 import MyCustom.MyDialog;
 
@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class PhanQuyenController {
 
     public static PhanQuyen quyenTK = null;
-    private PhanQuyenDA phanQuyenDA = new PhanQuyenDA();
+    private PhanQuyenService phanQuyenDA = new PhanQuyenService();
     private ArrayList<PhanQuyen> listPhanQuyen = null;
 
     public void docDanhSachQuyen() {

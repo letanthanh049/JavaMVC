@@ -1,6 +1,6 @@
 package Application.AppTier.Controller;
 
-import Application.CodeTier.DAL.ThongKeDA;
+import Application.CodeTier.BL.ThongKeService;
 import Application.AppTier.Model.ThongKe;
 
 import java.util.ArrayList;
@@ -10,7 +10,7 @@ import java.util.ArrayList;
  */
 public class ThongKeController {
 
-    public ThongKeDA thongKeDA = new ThongKeDA();
+    public ThongKeService thongKeDA = new ThongKeService();
     private ArrayList<Double> doanhThuThang;
 
     public ThongKe thongKe(int nam) {

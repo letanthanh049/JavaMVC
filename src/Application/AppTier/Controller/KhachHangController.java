@@ -1,6 +1,6 @@
 package Application.AppTier.Controller;
 
-import Application.CodeTier.DAL.KhachHangDA;
+import Application.CodeTier.BL.KhachHangService;
 import Application.AppTier.Model.KhachHang;
 import MyCustom.MyDialog;
 
@@ -10,7 +10,7 @@ import java.util.Locale;
 public class KhachHangController {
 
     private ArrayList<KhachHang> listKhachHang = null;
-    private KhachHangDA khachHangDA = new KhachHangDA();
+    private KhachHangService khachHangDA = new KhachHangService();
 
     public void docDanhSach() {
         this.listKhachHang = khachHangDA.getListKhachHang();

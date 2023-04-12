@@ -1,12 +1,12 @@
 package Application.AppTier.Controller;
 
-import Application.CodeTier.DAL.TaiKhoanDA;
+import Application.CodeTier.BL.TaiKhoanService;
 import Application.AppTier.Model.TaiKhoan;
 import MyCustom.MyDialog;
 
 public class TaiKhoanController {
 
-    private TaiKhoanDA taiKhoanDA = new TaiKhoanDA();
+    private TaiKhoanService taiKhoanDA = new TaiKhoanService();
 
     public String getTenDangNhapTheoMa(String ma) {
         int maNV = Integer.parseInt(ma);

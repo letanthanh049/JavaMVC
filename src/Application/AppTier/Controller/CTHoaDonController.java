@@ -1,6 +1,6 @@
 package Application.AppTier.Controller;
 
-import Application.CodeTier.DAL.CTHoaDonDA;
+import Application.CodeTier.BL.CTHoaDonService;
 import Application.AppTier.Model.CTHoaDon;
 import Application.AppTier.Model.HoaDon;
 
@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class CTHoaDonController {
 
     private ArrayList<CTHoaDon> listCTHoaDon;
-    private CTHoaDonDA ctHDDA = new CTHoaDonDA();
+    private CTHoaDonService ctHDDA = new CTHoaDonService();
     private HoaDonController hdBUS = new HoaDonController();
 
     public CTHoaDonController() {
