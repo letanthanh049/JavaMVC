@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public class NhanVienController {
 
-    private ArrayList<NhanVien> listNhanVien = new ArrayList();;
+    private ArrayList<NhanVien> listNhanVien = new ArrayList();
     private ArrayList<NhanVienResource> listNhanVienView = new ArrayList();;
     private NhanVienService nvService = new NhanVienService();
 
