@@ -1,6 +1,6 @@
 package Application.AppTier.Controller;
 
-import Application.CodeTier.BL.GiamGiaService;
+import Application.CodeTier.DAL.GiamGiaDA;
 import Application.AppTier.Model.GiamGia;
 import MyCustom.MyDialog;
 
@@ -10,7 +10,7 @@ import java.util.Date;
 public class GiamGiaController {
 
     private ArrayList<GiamGia> listGiamGia = null;
-    private GiamGiaService giamGiaDA = new GiamGiaService();
+    private GiamGiaDA giamGiaDA = new GiamGiaDA();
 
     public GiamGiaController() {
         docDanhSach();
@@ -102,6 +102,19 @@ public class GiamGiaController {
             new MyDialog("Sửa thành công!", MyDialog.SUCCESS_DIALOG);
         } else {
             new MyDialog("Sửa thất bại!", MyDialog.ERROR_DIALOG);
+        }
+        return flag;
+    }
+    public boolean xoaMaGiam(String ma) {
+        if (ma.equals("")) {
+            new MyDialog("Chưa chọn mã để xóa!", MyDialog.ERROR_DIALOG);
+            return false;
+        }
+        boolean flag = giamGiaDA.xoaMaGiam(Integer.parseInt(ma));
+        if (flag) {
+            new MyDialog("Xóa thành công!", MyDialog.SUCCESS_DIALOG);
+        } else {
+            new MyDialog("Xóa thất bại!", MyDialog.ERROR_DIALOG);
         }
         return flag;
     }
