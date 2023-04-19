@@ -2,6 +2,7 @@ package GUI;
 
 import Application.AppTier.Controller.KhachHangController;
 import Application.AppTier.Model.KhachHang;
+import Application.AppTier.Resource.KhachHangResource;
 import MyCustom.MyDialog;
 import MyCustom.MyTable;
 import MyCustom.TransparentPanel;
@@ -313,20 +314,39 @@ public class PnQuanLyKhachHangGUI extends JPanel {
 
     private void loadDataLenTableKhachHang() {
         khachHangController.docDanhSach();
-        ArrayList<KhachHang> dskh = khachHangController.getListKhachHang();
+        ArrayList<KhachHangResource> dskh = khachHangController.getListKhachHang();
         loadDataLenTableKhachHang(dskh);
     }
+    
+//    private void loadDataLenTableKhachHang() {
+//        dtmKhachHang.setRowCount(0);
+//        ArrayList<KhachHangResource> dskh = khachHangController.getListKhachHang();
+//
+//        for (KhachHangResource kh : dskh) {
+//            Vector vec = new Vector();
+//            vec.add(kh.getMaKH());
+//            vec.add(kh.getHo());
+//            vec.add(kh.getTen());
+//            vec.add(kh.getGioiTinh());
+//            vec.add(kh.getTongChiTieu());
+//            dtmKhachHang.addRow(vec);
+//        }
+//    }
 
-    private void loadDataLenTableKhachHang(ArrayList<KhachHang> dskh) {
+    private void loadDataLenTableKhachHang(ArrayList<KhachHangResource> dskh) {
         dtmKhachHang.setRowCount(0);
         DecimalFormat dcf = new DecimalFormat("###,###");
-        for (KhachHang kh : dskh) {
+        for (KhachHangResource kh : dskh) {
+//            System.out.println(dskh.size());
+//            KhachHangResource f = new KhachHangResource();
+//            f = dskh.get(2);
             Vector vec = new Vector();
             vec.add(kh.getMaKH());
             vec.add(kh.getHo());
             vec.add(kh.getTen());
             vec.add(kh.getGioiTinh());
             vec.add(dcf.format(kh.getTongChiTieu()));
+            System.out.println(vec.toString());
             dtmKhachHang.addRow(vec);
         }
     }
@@ -344,14 +364,14 @@ public class PnQuanLyKhachHangGUI extends JPanel {
     }
 
     private void xuLyTimKiemTheoKhoang() {
-        ArrayList<KhachHang> dskh = khachHangController.timKiemKhachHang(txtMinchiTieu.getText(), txtMaxChiTieu.getText());
+        ArrayList<KhachHangResource> dskh = khachHangController.timKiemKhachHang(txtMinchiTieu.getText(), txtMaxChiTieu.getText());
         if (dskh == null)
             return;
         loadDataLenTableKhachHang(dskh);
     }
 
     private void xuLyLiveSearch() {
-        ArrayList<KhachHang> dskh = khachHangController.timKiemKhachHang(txtTukhoa.getText());
+        ArrayList<KhachHangResource> dskh = khachHangController.timKiemKhachHang(txtTukhoa.getText());
         loadDataLenTableKhachHang(dskh);
     }
 

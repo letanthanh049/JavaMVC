@@ -1,6 +1,7 @@
 package GUI;
 
 import Application.AppTier.Controller.KhachHangController;
+import Application.AppTier.Resource.KhachHangResource;
 import Database.MyConnect;
 import Application.AppTier.Model.KhachHang;
 import MyCustom.MyTable;
@@ -132,9 +133,9 @@ public class DlgTimKhach extends JDialog {
 
     private void loadDataLenTable() {
         dtmKhachHang.setRowCount(0);
-        ArrayList<KhachHang> dskh = khachHangController.getListKhachHang();
+        ArrayList<KhachHangResource> dskh = khachHangController.getListKhachHang();
         if (dskh != null) {
-            for (KhachHang kh : dskh) {
+            for (KhachHangResource kh : dskh) {
                 Vector vec = new Vector();
                 vec.add(kh.getMaKH());
                 vec.add(kh.getHo());
@@ -148,8 +149,8 @@ public class DlgTimKhach extends JDialog {
 
     private void loadDataLenTable(String tuKhoa) {
         dtmKhachHang.setRowCount(0);
-        ArrayList<KhachHang> dskh = khachHangController.timKiemKhachHang(tuKhoa);
-        for (KhachHang kh : dskh) {
+        ArrayList<KhachHangResource> dskh = khachHangController.timKiemKhachHang(tuKhoa);
+        for (KhachHangResource kh : dskh) {
             Vector vec = new Vector();
             vec.add(kh.getMaKH());
             vec.add(kh.getHo());

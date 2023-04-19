@@ -1,6 +1,7 @@
 package Application.AppTier.Controller;
 
 import Application.CodeTier.BL.KhachHangService;
+import Application.AppTier.Resource.KhachHangResource;
 import Application.AppTier.Model.KhachHang;
 import MyCustom.MyDialog;
 
@@ -9,29 +10,37 @@ import java.util.Locale;
 
 public class KhachHangController {
 
-    private ArrayList<KhachHang> listKhachHang = null;
+    private ArrayList<KhachHang> listKhachHang = new ArrayList();
     private KhachHangService khachHangDA = new KhachHangService();
+    private ArrayList<KhachHangResource> listKhachHangView = new ArrayList();
 
     public void docDanhSach() {
         this.listKhachHang = khachHangDA.getListKhachHang();
+        System.out.println(this.listKhachHang.get(3).getHo());
+        System.out.println(this.listKhachHang.get(3).getTen());
+        this.listKhachHangView.clear();
+        for (KhachHang kh : listKhachHang) 
+            this.listKhachHangView.add(new KhachHangResource(kh));
+        System.out.println(this.listKhachHangView.get(3).getHo());
+        System.out.println(this.listKhachHangView.get(3).getTen());
     }
 
-    public ArrayList<KhachHang> getListKhachHang() {
-        if (listKhachHang == null)
+    public ArrayList<KhachHangResource> getListKhachHang() {
+        if (this.listKhachHangView == null)
             docDanhSach();
-        return listKhachHang;
+        return this.listKhachHangView;
     }
 
-    public ArrayList<KhachHang> timKiemKhachHang(String txtMin, String txtMax) {
+    public ArrayList<KhachHangResource> timKiemKhachHang(String txtMin, String txtMax) {
         if (txtMax.trim().equals("") && txtMin.trim().equals(""))
-            return listKhachHang;
+            return listKhachHangView;
         try {
-            ArrayList<KhachHang> dskh = new ArrayList<>();
+            ArrayList<KhachHangResource> dskh = new ArrayList<>();
             txtMin = txtMin.replace(",", "");
             txtMax = txtMax.replace(",", "");
             int min = Integer.parseInt(txtMin);
             int max = Integer.parseInt(txtMax);
-            for (KhachHang kh : listKhachHang) {
+            for (KhachHangResource kh : listKhachHangView) {
                 if (kh.getTongChiTieu() >= min && kh.getTongChiTieu() <= max) {
                     dskh.add(kh);
                 }
@@ -43,10 +52,10 @@ public class KhachHangController {
         return null;
     }
 
-    public ArrayList<KhachHang> timKiemKhachHang(String tuKhoa) {
+    public ArrayList<KhachHangResource> timKiemKhachHang(String tuKhoa) {
         tuKhoa = tuKhoa.toLowerCase();
-        ArrayList<KhachHang> dskh = new ArrayList<>();
-        for (KhachHang kh : listKhachHang) {
+        ArrayList<KhachHangResource> dskh = new ArrayList<>();
+        for (KhachHangResource kh : listKhachHangView) {
             String ho = kh.getHo().toLowerCase();
             String ten = kh.getTen().toLowerCase();
             String gioiTinh = kh.getGioiTinh().toLowerCase();
