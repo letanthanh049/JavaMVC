@@ -6,8 +6,6 @@ import Application.AppTier.Controller.DangNhapController;
 import Application.AppTier.Controller.NhanVienController;
 import Application.AppTier.Controller.SanPhamController;
 import Application.AppTier.Model.CTPhieuNhap;
-import Application.AppTier.Model.PhieuNhap;
-import Application.AppTier.Model.SanPham;
 import Application.AppTier.Resource.CTPhieuNhapResource;
 import Application.AppTier.Resource.NhanVienResource;
 import Application.AppTier.Resource.PhieuNhapResource;
