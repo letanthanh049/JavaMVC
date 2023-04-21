@@ -70,7 +70,7 @@ public class NhanVienDA {
     public boolean updateNhanVien(NhanVien nv) {
         boolean result = false;
         try {
-            String sql = "UPDATE nhanvien SET Ho=?, Ten=?, GioiTinh=?, ChucVu=? WHERE MaNV=?";
+            String sql = "UPDATE nhanvien SET Ho=?, Ten=?, GioiTinh=?, ChucVu=?, UpdatedAt=? WHERE MaNV=?";
             PreparedStatement pre = MyConnect.conn.prepareStatement(sql);
             pre.setString(1, nv.getHo());
             pre.setString(2, nv.getTen());

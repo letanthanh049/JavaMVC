@@ -2,6 +2,7 @@ package Application.AppTier.Controller;
 
 import Application.CodeTier.BL.KhachHangService;
 import Application.AppTier.Model.KhachHang;
+import Application.AppTier.Resource.KhachHangResource;
 import MyCustom.MyDialog;
 
 import java.util.ArrayList;
@@ -10,28 +11,32 @@ import java.util.Locale;
 public class KhachHangController {
 
     private ArrayList<KhachHang> listKhachHang = null;
-    private KhachHangService khachHangDA = new KhachHangService();
+    private ArrayList<KhachHangResource> listKhachHangView = new ArrayList();
+    private KhachHangService khService = new KhachHangService();
 
     public void docDanhSach() {
-        this.listKhachHang = khachHangDA.getListKhachHang();
+        this.listKhachHang = khService.getListKhachHang();
+        this.listKhachHangView.clear();
+        for (KhachHang kh : listKhachHang) 
+            this.listKhachHangView.add(new KhachHangResource(kh));
     }
 
-    public ArrayList<KhachHang> getListKhachHang() {
-        if (listKhachHang == null)
+    public ArrayList<KhachHangResource> getListKhachHang() {
+        if (listKhachHangView == null)
             docDanhSach();
-        return listKhachHang;
+        return listKhachHangView;
     }
 
-    public ArrayList<KhachHang> timKiemKhachHang(String txtMin, String txtMax) {
+    public ArrayList<KhachHangResource> timKiemKhachHang(String txtMin, String txtMax) {
         if (txtMax.trim().equals("") && txtMin.trim().equals(""))
-            return listKhachHang;
+            return listKhachHangView;
         try {
-            ArrayList<KhachHang> dskh = new ArrayList<>();
+            ArrayList<KhachHangResource> dskh = new ArrayList<>();
             txtMin = txtMin.replace(",", "");
             txtMax = txtMax.replace(",", "");
             int min = Integer.parseInt(txtMin);
             int max = Integer.parseInt(txtMax);
-            for (KhachHang kh : listKhachHang) {
+            for (KhachHangResource kh : listKhachHangView) {
                 if (kh.getTongChiTieu() >= min && kh.getTongChiTieu() <= max) {
                     dskh.add(kh);
                 }
@@ -43,10 +48,10 @@ public class KhachHangController {
         return null;
     }
 
-    public ArrayList<KhachHang> timKiemKhachHang(String tuKhoa) {
+    public ArrayList<KhachHangResource> timKiemKhachHang(String tuKhoa) {
         tuKhoa = tuKhoa.toLowerCase();
-        ArrayList<KhachHang> dskh = new ArrayList<>();
-        for (KhachHang kh : listKhachHang) {
+        ArrayList<KhachHangResource> dskh = new ArrayList<>();
+        for (KhachHangResource kh : listKhachHangView) {
             String ho = kh.getHo().toLowerCase();
             String ten = kh.getTen().toLowerCase();
             String gioiTinh = kh.getGioiTinh().toLowerCase();
@@ -71,7 +76,7 @@ public class KhachHangController {
         kh.setTen(ten);
         kh.setGioiTinh(gioiTinh);
         kh.setTongChiTieu(0);
-        boolean flag = khachHangDA.addKhachHang(kh);
+        boolean flag = khService.addKhachHang(kh);
         if (flag) {
             new MyDialog("Thêm thành công!", MyDialog.SUCCESS_DIALOG);
         } else {
@@ -93,7 +98,7 @@ public class KhachHangController {
         kh.setHo(ho);
         kh.setTen(ten);
         kh.setGioiTinh(gioiTinh);
-        boolean flag = khachHangDA.updateKhachHang(Integer.parseInt(ma), kh);
+        boolean flag = khService.updateKhachHang(Integer.parseInt(ma), kh);
         if (flag) {
             new MyDialog("Sửa thành công!", MyDialog.SUCCESS_DIALOG);
         } else {
@@ -109,7 +114,7 @@ public class KhachHangController {
             MyDialog dlg = new MyDialog("Bạn có chắc chắn muốn xoá?", MyDialog.WARNING_DIALOG);
             if(dlg.getAction() == MyDialog.CANCEL_OPTION)
                 return false;
-            flag = khachHangDA.deleteKhachHang(maKH);
+            flag = khService.deleteKhachHang(maKH);
         } catch (Exception e) {
             new MyDialog("Chưa chọn khách hàng!", MyDialog.ERROR_DIALOG);
         }

@@ -1,5 +1,7 @@
 package Application.AppTier.Resource;
 
+import Application.AppTier.Model.KhachHang;
+
 public class KhachHangResource {
     private int maKH;
     private String ho;
@@ -7,15 +9,20 @@ public class KhachHangResource {
     private String gioiTinh;
     private int tongChiTieu;
 
-    public KhachHangResource() {
-    }
-
     public KhachHangResource(int maKH, String ho, String ten, String gioiTinh, int tongChiTieu) {
         this.maKH = maKH;
         this.ho = ho;
         this.ten = ten;
         this.gioiTinh = gioiTinh;
         this.tongChiTieu = tongChiTieu;
+    }
+
+    public KhachHangResource(KhachHang kh) {
+        this.maKH = kh.getMaKH();
+        this.ho = kh.getHo();
+        this.ten = kh.getTen();
+        this.gioiTinh = kh.getGioiTinh();
+        this.tongChiTieu = kh.getTongChiTieu();
     }
 
     public int getMaKH() {

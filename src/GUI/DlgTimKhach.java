@@ -1,8 +1,7 @@
 package GUI;
 
 import Application.AppTier.Controller.KhachHangController;
-import Database.MyConnect;
-import Application.AppTier.Model.KhachHang;
+import Application.AppTier.Resource.KhachHangResource;
 import MyCustom.MyTable;
 
 import java.awt.BorderLayout;
@@ -25,7 +24,7 @@ import javax.swing.table.DefaultTableModel;
 public class DlgTimKhach extends JDialog {
 
     private KhachHangController khachHangController = new KhachHangController();
-    public static KhachHang khachHangTimDuoc = null;
+    public static KhachHangResource khachHangTimDuoc = null;
 
     public DlgTimKhach() {
         addControls();
@@ -116,7 +115,7 @@ public class DlgTimKhach extends JDialog {
             String gioiTinh = tblKhachHang.getValueAt(row, 3) + "";
             int tongChiTieu = Integer.parseInt(tblKhachHang.getValueAt(row, 4) + "");
 
-            khachHangTimDuoc = new KhachHang(ma, ho, ten, gioiTinh, tongChiTieu);
+            khachHangTimDuoc = new KhachHangResource(ma, ho, ten, gioiTinh, tongChiTieu);
         }
         this.dispose();
     }
@@ -132,9 +131,9 @@ public class DlgTimKhach extends JDialog {
 
     private void loadDataLenTable() {
         dtmKhachHang.setRowCount(0);
-        ArrayList<KhachHang> dskh = khachHangController.getListKhachHang();
+        ArrayList<KhachHangResource> dskh = khachHangController.getListKhachHang();
         if (dskh != null) {
-            for (KhachHang kh : dskh) {
+            for (KhachHangResource kh : dskh) {
                 Vector vec = new Vector();
                 vec.add(kh.getMaKH());
                 vec.add(kh.getHo());
@@ -148,8 +147,8 @@ public class DlgTimKhach extends JDialog {
 
     private void loadDataLenTable(String tuKhoa) {
         dtmKhachHang.setRowCount(0);
-        ArrayList<KhachHang> dskh = khachHangController.timKiemKhachHang(tuKhoa);
-        for (KhachHang kh : dskh) {
+        ArrayList<KhachHangResource> dskh = khachHangController.timKiemKhachHang(tuKhoa);
+        for (KhachHangResource kh : dskh) {
             Vector vec = new Vector();
             vec.add(kh.getMaKH());
             vec.add(kh.getHo());
