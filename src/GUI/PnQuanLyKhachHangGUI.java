@@ -344,7 +344,6 @@ public class PnQuanLyKhachHangGUI extends JPanel {
     }
 
     private void xuLyTimKiemTheoKhoang() {
-//        ArrayList<KhachHangResource> dskh = khachHangController.timKiemKhachHang(txtMinchiTieu.getText(), txtMaxChiTieu.getText());
         ArrayList<KhachHangResource> dskh = khachHangController.timKiemKhachHang(txtMinchiTieu.getText(), txtMaxChiTieu.getText());
         if (dskh == null)
             return;
