@@ -1,8 +1,3 @@
 # Default ignored files
 /shelf/
 /workspace.xml
-
-# Default ignored folders
-dist/
-nbproject/
-build/
