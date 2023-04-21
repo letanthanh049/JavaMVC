@@ -1,6 +1,7 @@
 package Application.AppTier.Controller;
 
 import Application.CodeTier.BL.KhachHangService;
+import Application.AppTier.Resource.KhachHangResource;
 import Application.AppTier.Model.KhachHang;
 import Application.AppTier.Resource.KhachHangResource;
 import MyCustom.MyDialog;
@@ -21,9 +22,9 @@ public class KhachHangController {
     }
 
     public ArrayList<KhachHangResource> getListKhachHang() {
-        if (listKhachHangView == null)
+        if (this.listKhachHangView == null)
             docDanhSach();
-        return listKhachHangView;
+        return this.listKhachHangView;
     }
 
     public ArrayList<KhachHangResource> timKiemKhachHang(String txtMin, String txtMax) {

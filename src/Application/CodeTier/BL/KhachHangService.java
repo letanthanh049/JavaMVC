@@ -10,8 +10,7 @@ public class KhachHangService {
     private KhachHangDA khDA = new KhachHangDA();
     
     public ArrayList<KhachHang> getListKhachHang() {
-        ArrayList<KhachHang> dskh = khDA.getListKhachHang();
-        return dskh;
+        return khDA.getListKhachHang();
     }
 
     public KhachHang getKhachHang(int maKH) {

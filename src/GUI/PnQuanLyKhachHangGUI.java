@@ -1,7 +1,9 @@
 package GUI;
 
 import Application.AppTier.Controller.KhachHangController;
+import Application.AppTier.Model.KhachHang;
 import Application.AppTier.Resource.KhachHangResource;
+import MyCustom.MyDialog;
 import MyCustom.MyTable;
 import MyCustom.TransparentPanel;
 

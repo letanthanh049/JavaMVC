@@ -1,5 +1,7 @@
 package Application.AppTier.Resource;
 
+import Application.AppTier.Model.NhaCungCap;
+
 public class NhaCungCapResource {
     private int maNCC;
     private String tenNCC;
@@ -14,6 +16,13 @@ public class NhaCungCapResource {
         this.tenNCC = tenNCC;
         this.diaChi = diaChi;
         this.dienThoai = dienThoai;
+    }
+    
+    public NhaCungCapResource(NhaCungCap ncc) {
+        this.maNCC = ncc.getMaNCC();
+        this.tenNCC = ncc.getTenNCC();
+        this.diaChi = ncc.getDiaChi();
+        this.dienThoai = ncc.getDienThoai();
     }
 
     public int getMaNCC() {

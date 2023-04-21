@@ -569,7 +569,7 @@ public class PnQuanLyNhapHangGUI extends javax.swing.JPanel {
         );
         pnNhapHangLayout.setVerticalGroup(
             pnNhapHangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnTable, javax.swing.GroupLayout.DEFAULT_SIZE, 811, Short.MAX_VALUE)
+            .addComponent(pnTable, javax.swing.GroupLayout.DEFAULT_SIZE, 808, Short.MAX_VALUE)
             .addGroup(pnNhapHangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(pnNhapHangLayout.createSequentialGroup()
                     .addContainerGap()
@@ -824,8 +824,8 @@ public class PnQuanLyNhapHangGUI extends javax.swing.JPanel {
 
     private void loadDataTableKho() {
         dtmKho.setRowCount(0);
-        ArrayList<SanPham> dssp = sanPhamController.getListSanPham();
-        for (SanPham sp : dssp) {
+        ArrayList<SanPhamResource> dssp = sanPhamController.getListSanPham();
+        for (SanPhamResource sp : dssp) {
             if (sp.getMaLoai() != 1) {
                 Vector vec = new Vector();
                 vec.add(sp.getMaSP());
@@ -838,8 +838,8 @@ public class PnQuanLyNhapHangGUI extends javax.swing.JPanel {
 
     private void loadDataTableKho(String tuKhoa) {
         dtmKho.setRowCount(0);
-        ArrayList<SanPham> dssp = sanPhamController.getSanPhamTheoTen(tuKhoa);
-        for (SanPham sp : dssp) {
+        ArrayList<SanPhamResource> dssp = sanPhamController.getSanPhamTheoTen(tuKhoa);
+        for (SanPhamResource sp : dssp) {
             if (sp.getMaLoai() != 1) {
                 Vector vec = new Vector();
                 vec.add(sp.getMaSP());
@@ -873,14 +873,14 @@ public class PnQuanLyNhapHangGUI extends javax.swing.JPanel {
 
     private void loadDataTablePhieuNhap() {
         phieuNhapController.docDanhSach();
-        ArrayList<PhieuNhap> dspn = phieuNhapController.getListPhieuNhap();
+        ArrayList<PhieuNhapResource> dspn = phieuNhapController.getListPhieuNhap();
         duaDataVaoTablePhieuNhap(dspn);
     }
 
-    private void duaDataVaoTablePhieuNhap(ArrayList<PhieuNhap> dspn) {
+    private void duaDataVaoTablePhieuNhap(ArrayList<PhieuNhapResource> dspn) {
         if (dspn != null) {
             dtmPhieuNhap.setRowCount(0);
-            for (PhieuNhap pn : dspn) {
+            for (PhieuNhapResource pn : dspn) {
                 Vector vec = new Vector();
                 vec.add(pn.getMaPN());
                 vec.add(sdf.format(pn.getNgayLap()));
@@ -892,13 +892,13 @@ public class PnQuanLyNhapHangGUI extends javax.swing.JPanel {
 
     private void loadDataTablePhieuNhapTheoGia(String giaThap, String giaCao) {
         phieuNhapController.docDanhSach();
-        ArrayList<PhieuNhap> dspn = phieuNhapController.getListPhieuNhapTheoGia(giaThap, giaCao);
+        ArrayList<PhieuNhapResource> dspn = phieuNhapController.getListPhieuNhapTheoGia(giaThap, giaCao);
         duaDataVaoTablePhieuNhap(dspn);
     }
 
     private void loadDataTablePhieuNhapTheoNgay(String tuNgay, String denNgay) {
         phieuNhapController.docDanhSach();
-        ArrayList<PhieuNhap> dspn = phieuNhapController.getListPhieuNhapTheoNgay(tuNgay, denNgay);
+        ArrayList<PhieuNhapResource> dspn = phieuNhapController.getListPhieuNhapTheoNgay(tuNgay, denNgay);
         duaDataVaoTablePhieuNhap(dspn);
     }
 
@@ -1046,17 +1046,16 @@ public class PnQuanLyNhapHangGUI extends javax.swing.JPanel {
 
     private void tblPhieuNhapMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblPhieuNhapMouseClicked
         int row = tblPhieuNhap.getSelectedRow();
+        String maPN = tblPhieuNhap.getValueAt(row, 0) + "";
         if (row < 0) {
             return;
         }
-        String maPN = tblPhieuNhap.getValueAt(row, 0) + "";
-        PhieuNhap pn = phieuNhapController.timPhieuNhap(maPN);
+        PhieuNhapResource pn = phieuNhapController.timPhieuNhap(maPN);
         txtMaPN.setText(pn.getMaPN() + "");
         txtMaNCC.setText(pn.getMaNCC() + "");
         txtMaNV.setText(pn.getMaNV() + "");
         txtNgayLap.setText(sdf.format(pn.getNgayLap()));
         txtTongTienPN.setText(dcf.format(pn.getTongTien()));
-
         loadDataTableCTPhieuNhap(maPN);
     }//GEN-LAST:event_tblPhieuNhapMouseClicked
 

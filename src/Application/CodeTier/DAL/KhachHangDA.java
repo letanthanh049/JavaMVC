@@ -31,6 +31,9 @@ public class KhachHangDA {
             }
             return dskh;
         } catch (SQLException ex) {
+            String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
+            System.out.println("Error occurred in method: " + methodName);
+            System.out.println(ex);
         }
         return null;
     }
