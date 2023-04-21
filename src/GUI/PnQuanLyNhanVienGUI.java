@@ -10,8 +10,8 @@ import static Main.Main.changLNF;
 import Application.AppTier.Controller.NhanVienController;
 import Application.AppTier.Controller.PhanQuyenController;
 import Application.AppTier.Controller.TaiKhoanController;
-import Application.AppTier.Model.NhanVien;
 import Application.AppTier.Model.PhanQuyen;
+import Application.AppTier.Resource.NhanVienResource;
 
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
@@ -727,9 +727,9 @@ public class PnQuanLyNhanVienGUI extends JPanel {
     }
 
     private void xuLyTimKiemNhanVien() {
-        ArrayList<NhanVien> dsnv = nhanVienController.timNhanVien(txtTimNV.getText());
+        ArrayList<NhanVienResource> dsnv = nhanVienController.timNhanVien(txtTimNV.getText());
         dtmNhanVien.setRowCount(0);
-        for (NhanVien nv : dsnv) {
+        for (NhanVienResource nv : dsnv) {
             Vector vec = new Vector();
             vec.add(nv.getMaNV());
             vec.add(nv.getHo());
@@ -759,9 +759,9 @@ public class PnQuanLyNhanVienGUI extends JPanel {
 
     private void loadDataTblNhanVien() {
         dtmNhanVien.setRowCount(0);
-        ArrayList<NhanVien> dsnv = nhanVienController.getDanhSachNhanVien();
+        ArrayList<NhanVienResource> dsnv = nhanVienController.getDanhSachNhanVien();
 
-        for (NhanVien nv : dsnv) {
+        for (NhanVienResource nv : dsnv) {
             Vector vec = new Vector();
             vec.add(nv.getMaNV());
             vec.add(nv.getHo());

@@ -1,7 +1,7 @@
 package Application.AppTier.Controller;
 
 import MyCustom.MyDialog;
-import Application.CodeTier.DAL.PhieuNhapDA;
+import Application.CodeTier.BL.PhieuNhapService;
 import Application.AppTier.Model.PhieuNhap;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -9,7 +9,7 @@ import java.util.Date;
 
 public class PhieuNhapController {
 
-    private PhieuNhapDA phieuNhapDA = new PhieuNhapDA();
+    private PhieuNhapService phieuNhapDA = new PhieuNhapService();
     private ArrayList<PhieuNhap> listPhieuNhap = null;
 
     public PhieuNhapController() {

@@ -10,7 +10,7 @@ import Application.AppTier.Model.LoaiSP;
 import Application.AppTier.Model.HoaDon;
 import Application.AppTier.Model.SanPham;
 import Application.AppTier.Model.CTHoaDon;
-import Application.AppTier.Model.NhanVien;
+import Application.AppTier.Resource.NhanVienResource;
 
 import static Main.Main.changLNF;
 
@@ -902,9 +902,9 @@ public class PnQuanLyBanHangGUI extends JPanel {
 
     private void loadDataComboboxNhanVienBan() {
         cmbNhanVienBan.removeAllItems();
-        ArrayList<NhanVien> dsnv = nvController.getDanhSachNhanVien();
+        ArrayList<NhanVienResource> dsnv = nvController.getDanhSachNhanVien();
         if (dsnv != null) {
-            for (NhanVien nv : dsnv) {
+            for (NhanVienResource nv : dsnv) {
                 cmbNhanVienBan.addItem(nv.getMaNV() + " - " + nv.getHo() + " " + nv.getTen());
             }
         }

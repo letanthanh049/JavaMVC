@@ -11,6 +11,7 @@ import java.sql.Statement;
 public class TaiKhoanDA {
 
     public boolean themTaiKhoan(int maNV, String tenDangNhap, String quyen) {
+        boolean result = false;
         try {
             String sql = "INSERT INTO taikhoan(MaNV, TenDangNhap, MatKhau, Quyen) "
                     + "VALUES (?, ?, ?, ?)";
@@ -19,10 +20,14 @@ public class TaiKhoanDA {
             pre.setString(2, tenDangNhap);
             pre.setString(3, tenDangNhap);
             pre.setString(4, quyen);
-            return pre.executeUpdate() > 0;
+            result = pre.executeUpdate() > 0;
         } catch (Exception e) {
+            String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
+            System.out.println("Error occurred in method: " + methodName);
+            System.out.println(e);
+            return false;
         }
-        return false;
+        return result;
     }
 
     public boolean kiemTraTrungTenDangNhap(String tenDangNhap) {

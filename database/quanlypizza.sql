@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 10, 2023 at 04:22 PM
+-- Generation Time: Apr 12, 2023 at 08:00 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.0.13
 
@@ -18,8 +18,171 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `qlpizza`
+-- Database: `quanlypizza`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `cthoadon`
+--
+
+CREATE TABLE `cthoadon` (
+  `MaHD` int(11) NOT NULL,
+  `MaSP` int(11) NOT NULL,
+  `SoLuong` int(11) NOT NULL,
+  `DonGia` int(11) NOT NULL,
+  `ThanhTien` int(11) NOT NULL,
+  `CreatedAt` timestamp NULL DEFAULT NULL,
+  `UpdatedAt` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `cthoadon`
+--
+
+INSERT INTO `cthoadon` (`MaHD`, `MaSP`, `SoLuong`, `DonGia`, `ThanhTien`, `CreatedAt`, `UpdatedAt`) VALUES
+(18, 114, 2, 159000, 318000, NULL, NULL),
+(18, 122, 3, 249000, 747000, NULL, NULL),
+(18, 124, 6, 19000, 114000, NULL, NULL),
+(18, 130, 2, 19000, 38000, NULL, NULL),
+(18, 132, 2, 25000, 50000, NULL, NULL),
+(19, 115, 2, 119000, 238000, NULL, NULL),
+(19, 120, 1, 239000, 239000, NULL, NULL),
+(19, 128, 4, 19000, 76000, NULL, NULL),
+(19, 131, 5, 10000, 50000, NULL, NULL),
+(20, 118, 1, 129000, 129000, NULL, NULL),
+(20, 120, 2, 239000, 478000, NULL, NULL),
+(20, 129, 5, 19000, 38000, NULL, NULL),
+(20, 130, 5, 19000, 95000, NULL, NULL),
+(20, 131, 10, 10000, 100000, NULL, NULL),
+(21, 112, 3, 129000, 387000, NULL, NULL),
+(21, 117, 2, 149000, 298000, NULL, NULL),
+(21, 126, 10, 19000, 190000, NULL, NULL),
+(21, 127, 3, 29000, 87000, NULL, NULL),
+(21, 128, 15, 19000, 285000, NULL, NULL),
+(21, 131, 6, 10000, 60000, NULL, NULL),
+(22, 114, 5, 159000, 795000, NULL, NULL),
+(22, 127, 10, 29000, 290000, NULL, NULL),
+(22, 129, 6, 19000, 95000, NULL, NULL),
+(22, 132, 3, 25000, 75000, NULL, NULL),
+(23, 112, 3, 129000, 387000, NULL, NULL),
+(23, 113, 1, 119000, 119000, NULL, NULL),
+(23, 118, 1, 129000, 129000, NULL, NULL),
+(23, 128, 6, 19000, 114000, NULL, NULL),
+(23, 131, 5, 10000, 50000, NULL, NULL),
+(23, 132, 2, 25000, 25000, NULL, NULL),
+(24, 115, 1, 119000, 119000, NULL, NULL),
+(24, 116, 1, 130000, 130000, NULL, NULL),
+(24, 119, 1, 239000, 239000, NULL, NULL),
+(24, 126, 6, 19000, 114000, NULL, NULL),
+(24, 127, 3, 29000, 87000, NULL, NULL),
+(24, 131, 7, 10000, 70000, NULL, NULL),
+(24, 132, 4, 25000, 100000, NULL, NULL),
+(25, 118, 1, 129000, 129000, NULL, NULL),
+(25, 121, 1, 229000, 229000, NULL, NULL),
+(25, 130, 4, 19000, 76000, NULL, NULL),
+(25, 131, 5, 10000, 50000, NULL, NULL),
+(25, 132, 3, 25000, 75000, NULL, NULL),
+(26, 111, 3, 169000, 507000, NULL, NULL),
+(26, 120, 3, 239000, 717000, NULL, NULL),
+(26, 122, 2, 249000, 498000, NULL, NULL),
+(26, 127, 4, 29000, 116000, NULL, NULL),
+(27, 113, 1, 119000, 119000, NULL, NULL),
+(27, 119, 1, 239000, 239000, NULL, NULL),
+(27, 123, 1, 269000, 269000, NULL, NULL),
+(27, 126, 1, 19000, 19000, NULL, NULL),
+(27, 131, 1, 10000, 10000, NULL, NULL),
+(28, 113, 10, 119000, 1190000, NULL, NULL),
+(28, 116, 4, 130000, 520000, NULL, NULL),
+(28, 119, 3, 239000, 717000, NULL, NULL),
+(28, 132, 5, 25000, 125000, NULL, NULL),
+(29, 114, 4, 159000, 636000, NULL, NULL),
+(29, 115, 1, 119000, 119000, NULL, NULL),
+(29, 116, 1, 130000, 130000, NULL, NULL),
+(29, 131, 2, 10000, 20000, NULL, NULL),
+(30, 116, 1, 130000, 130000, NULL, NULL),
+(30, 117, 7, 149000, 1043000, NULL, NULL),
+(30, 123, 10, 269000, 2690000, NULL, NULL),
+(30, 125, 1, 29000, 29000, NULL, NULL),
+(30, 127, 2, 29000, 29000, NULL, NULL),
+(31, 111, 1, 169000, 169000, NULL, NULL),
+(31, 115, 6, 119000, 595000, NULL, NULL),
+(31, 117, 1, 149000, 149000, NULL, NULL),
+(31, 118, 1, 129000, 129000, NULL, NULL),
+(31, 130, 4, 19000, 76000, NULL, NULL),
+(32, 120, 5, 239000, 1195000, NULL, NULL),
+(32, 121, 4, 229000, 916000, NULL, NULL),
+(33, 116, 1, 130000, 130000, NULL, NULL),
+(33, 119, 30, 239000, 7170000, NULL, NULL),
+(35, 113, 1, 119000, 119000, NULL, NULL),
+(35, 117, 1, 149000, 149000, NULL, NULL),
+(35, 131, 8, 10000, 70000, NULL, NULL),
+(37, 116, 1, 130000, 130000, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `ctphieunhap`
+--
+
+CREATE TABLE `ctphieunhap` (
+  `MaPN` int(11) NOT NULL,
+  `MaSP` int(11) NOT NULL,
+  `SoLuong` int(11) NOT NULL,
+  `DonGia` int(11) NOT NULL,
+  `ThanhTien` int(11) NOT NULL,
+  `CreatedAt` timestamp NULL DEFAULT NULL,
+  `UpdatedAt` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `ctphieunhap`
+--
+
+INSERT INTO `ctphieunhap` (`MaPN`, `MaSP`, `SoLuong`, `DonGia`, `ThanhTien`, `CreatedAt`, `UpdatedAt`) VALUES
+(4, 128, 100, 10000, 1000000, NULL, NULL),
+(4, 129, 3, 9000, 27000, NULL, NULL),
+(5, 124, 6, 10000, 60000, NULL, NULL),
+(5, 125, 3, 15000, 45000, NULL, NULL),
+(5, 126, 7, 10000, 70000, NULL, NULL),
+(5, 127, 2, 15000, 30000, NULL, NULL),
+(5, 130, 3, 9000, 27000, NULL, NULL),
+(5, 131, 9, 4000, 36000, NULL, NULL),
+(7, 126, 9, 10000, 90000, NULL, NULL),
+(8, 124, 30, 10000, 300000, NULL, NULL),
+(8, 126, 50, 10000, 500000, NULL, NULL),
+(8, 129, 30, 9000, 270000, NULL, NULL),
+(9, 135, 100, 10000, 1000000, NULL, NULL),
+(10, 136, 200, 23000, 4600000, NULL, NULL),
+(10, 137, 80, 84500, 6760000, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `giamgia`
+--
+
+CREATE TABLE `giamgia` (
+  `MaGiam` int(11) NOT NULL,
+  `TenGiamGia` text NOT NULL,
+  `PhanTramGiam` int(11) NOT NULL,
+  `DieuKien` int(11) NOT NULL,
+  `NgayBD` date NOT NULL,
+  `NgayKT` date NOT NULL,
+  `CreatedAt` timestamp NULL DEFAULT NULL,
+  `UpdatedAt` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `giamgia`
+--
+
+INSERT INTO `giamgia` (`MaGiam`, `TenGiamGia`, `PhanTramGiam`, `DieuKien`, `NgayBD`, `NgayKT`, `CreatedAt`, `UpdatedAt`) VALUES
+(1, 'Không giảm giá', 0, 0, '2020-01-01', '2042-12-31', NULL, NULL),
+(2, 'Giảm 20% đơn hàng từ 150.000đ', 20, 150000, '2021-04-22', '2021-05-13', NULL, NULL),
+(4, 'Giảm 10% đơn hàng từ 80.000đ', 10, 80000, '2021-03-26', '2021-05-31', NULL, NULL),
+(6, '30/04-01/05 giảm 30% đơn hàng từ 300.000đ', 30, 300000, '2021-04-20', '2021-05-08', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -97,6 +260,28 @@ INSERT INTO `khachhang` (`MaKH`, `Ho`, `Ten`, `GioiTinh`, `TongChiTieu`, `TinhTr
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `loai`
+--
+
+CREATE TABLE `loai` (
+  `MaLoai` int(11) NOT NULL,
+  `TenLoai` text NOT NULL,
+  `CreatedAt` timestamp NULL DEFAULT NULL,
+  `UpdatedAt` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `loai`
+--
+
+INSERT INTO `loai` (`MaLoai`, `TenLoai`, `CreatedAt`, `UpdatedAt`) VALUES
+(1, 'Pizza', NULL, NULL),
+(2, 'Nước uống', NULL, NULL),
+(3, 'Nguyên liệu', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `nhacungcap`
 --
 
@@ -148,6 +333,61 @@ INSERT INTO `nhanvien` (`MaNV`, `Ho`, `Ten`, `GioiTinh`, `ChucVu`, `CreatedAt`, 
 (13, 'Nguyễn Ngọc Mai', 'Linh', 'Nữ', 'Nhân Viên', NULL, NULL),
 (14, 'Hà Văn', 'Hùng', 'Nam', 'Nhân Viên', NULL, NULL),
 (15, 'Lê Thị Thuý', 'Diễm', 'Nữ', 'Quản Lý', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `phanquyen`
+--
+
+CREATE TABLE `phanquyen` (
+  `Quyen` varchar(255) NOT NULL,
+  `NhapHang` int(1) NOT NULL,
+  `QLSanPham` int(1) NOT NULL,
+  `QLNhanVien` int(1) NOT NULL,
+  `QLKhachHang` int(1) NOT NULL,
+  `ThongKe` int(1) NOT NULL,
+  `CreatedAt` timestamp NULL DEFAULT NULL,
+  `UpdatedAt` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `phanquyen`
+--
+
+INSERT INTO `phanquyen` (`Quyen`, `NhapHang`, `QLSanPham`, `QLNhanVien`, `QLKhachHang`, `ThongKe`, `CreatedAt`, `UpdatedAt`) VALUES
+('Default', 0, 0, 0, 0, 0, NULL, NULL),
+('Nhân viên', 0, 0, 0, 1, 0, NULL, NULL),
+('Quản lý', 1, 0, 1, 1, 1, NULL, NULL),
+('Quản trị', 1, 1, 1, 1, 1, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `phieunhap`
+--
+
+CREATE TABLE `phieunhap` (
+  `MaPN` int(11) NOT NULL,
+  `MaNCC` int(11) NOT NULL,
+  `MaNV` int(11) NOT NULL,
+  `NgayLap` date NOT NULL,
+  `TongTien` int(11) NOT NULL,
+  `CreatedAt` timestamp NULL DEFAULT NULL,
+  `UpdatedAt` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `phieunhap`
+--
+
+INSERT INTO `phieunhap` (`MaPN`, `MaNCC`, `MaNV`, `NgayLap`, `TongTien`, `CreatedAt`, `UpdatedAt`) VALUES
+(4, 2, 0, '2021-04-19', 1027000, NULL, NULL),
+(5, 2, 0, '2021-04-23', 268000, NULL, NULL),
+(7, 2, 0, '2021-04-26', 90000, NULL, NULL),
+(8, 2, 0, '2021-05-02', 1070000, NULL, NULL),
+(9, 1, 0, '2021-05-04', 1000000, NULL, NULL),
+(10, 5, 0, '2021-05-07', 11360000, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -230,6 +470,25 @@ INSERT INTO `taikhoan` (`MaNV`, `TenDangNhap`, `MatKhau`, `Quyen`, `TrangThai`, 
 --
 
 --
+-- Indexes for table `cthoadon`
+--
+ALTER TABLE `cthoadon`
+  ADD PRIMARY KEY (`MaHD`,`MaSP`),
+  ADD KEY `cthoadon_ibfk_1` (`MaHD`);
+
+--
+-- Indexes for table `ctphieunhap`
+--
+ALTER TABLE `ctphieunhap`
+  ADD PRIMARY KEY (`MaPN`,`MaSP`);
+
+--
+-- Indexes for table `giamgia`
+--
+ALTER TABLE `giamgia`
+  ADD PRIMARY KEY (`MaGiam`);
+
+--
 -- Indexes for table `hoadon`
 --
 ALTER TABLE `hoadon`
@@ -244,6 +503,12 @@ ALTER TABLE `khachhang`
   ADD PRIMARY KEY (`MaKH`);
 
 --
+-- Indexes for table `loai`
+--
+ALTER TABLE `loai`
+  ADD PRIMARY KEY (`MaLoai`);
+
+--
 -- Indexes for table `nhacungcap`
 --
 ALTER TABLE `nhacungcap`
@@ -254,6 +519,20 @@ ALTER TABLE `nhacungcap`
 --
 ALTER TABLE `nhanvien`
   ADD PRIMARY KEY (`MaNV`);
+
+--
+-- Indexes for table `phanquyen`
+--
+ALTER TABLE `phanquyen`
+  ADD PRIMARY KEY (`Quyen`);
+
+--
+-- Indexes for table `phieunhap`
+--
+ALTER TABLE `phieunhap`
+  ADD PRIMARY KEY (`MaPN`),
+  ADD KEY `phieunhap_ibfk_1` (`MaNCC`),
+  ADD KEY `phieunhap_ibfk_2` (`MaNV`);
 
 --
 -- Indexes for table `sanpham`
@@ -274,6 +553,12 @@ ALTER TABLE `taikhoan`
 --
 
 --
+-- AUTO_INCREMENT for table `giamgia`
+--
+ALTER TABLE `giamgia`
+  MODIFY `MaGiam` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
 -- AUTO_INCREMENT for table `hoadon`
 --
 ALTER TABLE `hoadon`
@@ -286,6 +571,12 @@ ALTER TABLE `khachhang`
   MODIFY `MaKH` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
+-- AUTO_INCREMENT for table `loai`
+--
+ALTER TABLE `loai`
+  MODIFY `MaLoai` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
 -- AUTO_INCREMENT for table `nhacungcap`
 --
 ALTER TABLE `nhacungcap`
@@ -295,7 +586,13 @@ ALTER TABLE `nhacungcap`
 -- AUTO_INCREMENT for table `nhanvien`
 --
 ALTER TABLE `nhanvien`
-  MODIFY `MaNV` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `MaNV` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+
+--
+-- AUTO_INCREMENT for table `phieunhap`
+--
+ALTER TABLE `phieunhap`
+  MODIFY `MaPN` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `sanpham`
@@ -314,11 +611,30 @@ ALTER TABLE `taikhoan`
 --
 
 --
+-- Constraints for table `cthoadon`
+--
+ALTER TABLE `cthoadon`
+  ADD CONSTRAINT `cthoadon_ibfk_1` FOREIGN KEY (`MaHD`) REFERENCES `hoadon` (`MaHD`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `ctphieunhap`
+--
+ALTER TABLE `ctphieunhap`
+  ADD CONSTRAINT `ctphieunhap_ibfk_2` FOREIGN KEY (`MaPN`) REFERENCES `phieunhap` (`MaPN`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Constraints for table `hoadon`
 --
 ALTER TABLE `hoadon`
   ADD CONSTRAINT `hoadon_ibfk_1` FOREIGN KEY (`MaNV`) REFERENCES `nhanvien` (`MaNV`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `hoadon_ibfk_2` FOREIGN KEY (`MaKH`) REFERENCES `khachhang` (`MaKH`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `phieunhap`
+--
+ALTER TABLE `phieunhap`
+  ADD CONSTRAINT `phieunhap_ibfk_1` FOREIGN KEY (`MaNCC`) REFERENCES `nhacungcap` (`MaNCC`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `phieunhap_ibfk_2` FOREIGN KEY (`MaNV`) REFERENCES `nhanvien` (`MaNV`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `sanpham`

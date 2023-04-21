@@ -1,13 +1,13 @@
 package Application.AppTier.Controller;
 
 import Application.AppTier.Model.CTPhieuNhap;
-import Application.CodeTier.DAL.CTPhieuNhapDA;
+import Application.CodeTier.BL.CTPhieuNhapService;
 import java.util.ArrayList;
 
 public class CTPhieuNhapController {
 
     private ArrayList<CTPhieuNhap> listPhieuNhap = null;
-    private CTPhieuNhapDA ctPhieuNhapDA = new CTPhieuNhapDA();
+    private CTPhieuNhapService ctPhieuNhapDA = new CTPhieuNhapService();
 
     public CTPhieuNhapController() {
         docDanhSach();

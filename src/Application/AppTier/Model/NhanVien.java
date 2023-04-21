@@ -15,12 +15,14 @@ public class NhanVien {
     public NhanVien() {
     }
 
-    public NhanVien(int maNV, String ho, String ten, String gioiTinh, String chucVu) {
+    public NhanVien(int maNV, String ho, String ten, String gioiTinh, String chucVu, Timestamp createdAt, Timestamp updatedAt) {
         this.maNV = maNV;
         this.ho = ho;
         this.ten = ten;
         this.gioiTinh = gioiTinh;
         this.chucVu = chucVu;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
     }
 
     public int getMaNV() {

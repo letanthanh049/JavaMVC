@@ -1,6 +1,6 @@
 package Application.AppTier.Controller;
 
-import Application.CodeTier.DAL.HoaDonDA;
+import Application.CodeTier.BL.HoaDonService;
 import Application.AppTier.Model.HoaDon;
 import MyCustom.MyDialog;
 
@@ -11,7 +11,7 @@ import java.util.Date;
 public class HoaDonController {
 
     private ArrayList<HoaDon> listHoaDon;
-    private HoaDonDA hoaDonDA = new HoaDonDA();
+    private HoaDonService hoaDonDA = new HoaDonService();
 
     public ArrayList<HoaDon> getListHoaDon() {
         listHoaDon = hoaDonDA.getListHoaDon();

@@ -1,6 +1,6 @@
 package Application.AppTier.Controller;
 
-import Application.CodeTier.DAL.GiamGiaDA;
+import Application.CodeTier.BL.GiamGiaService;
 import Application.AppTier.Model.GiamGia;
 import MyCustom.MyDialog;
 
@@ -10,7 +10,7 @@ import java.util.Date;
 public class GiamGiaController {
 
     private ArrayList<GiamGia> listGiamGia = null;
-    private GiamGiaDA giamGiaDA = new GiamGiaDA();
+    private GiamGiaService giamGiaDA = new GiamGiaService();
 
     public GiamGiaController() {
         docDanhSach();

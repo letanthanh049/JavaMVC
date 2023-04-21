@@ -1,13 +1,13 @@
 package Application.AppTier.Controller;
 
-import Application.CodeTier.DAL.LoaiDA;
+import Application.CodeTier.BL.LoaiService;
 import Application.AppTier.Model.LoaiSP;
 import MyCustom.MyDialog;
 import java.util.ArrayList;
 
 public class LoaiController {
 
-    private LoaiDA loaiDA = new LoaiDA();
+    private LoaiService loaiDA = new LoaiService();
     private ArrayList<LoaiSP> listLoai = null;
     
     public LoaiController() {

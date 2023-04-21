@@ -1,6 +1,6 @@
 package Application.AppTier.Controller;
 
-import Application.CodeTier.DAL.NhaCungCapDA;
+import Application.CodeTier.BL.NhaCungCapService;
 import Application.AppTier.Model.NhaCungCap;
 import MyCustom.MyDialog;
 import java.util.ArrayList;
@@ -9,7 +9,7 @@ import java.util.regex.Pattern;
 
 public class NhaCungCapController {
 
-    private NhaCungCapDA nhaCungCapDA = new NhaCungCapDA();
+    private NhaCungCapService nhaCungCapDA = new NhaCungCapService();
     private ArrayList<NhaCungCap> listNhaCungCap = null;
 
     public NhaCungCapController() {

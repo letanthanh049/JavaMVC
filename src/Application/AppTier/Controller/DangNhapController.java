@@ -1,6 +1,6 @@
 package Application.AppTier.Controller;
 
-import Application.CodeTier.DAL.DangNhapDA;
+import Application.CodeTier.BL.DangNhapService;
 import Application.AppTier.Model.PhanQuyen;
 import Application.AppTier.Model.TaiKhoan;
 import MyCustom.MyDialog;
@@ -22,7 +22,7 @@ public class DangNhapController {
         tk.setTenDangNhap(user);
         tk.setMatKhau(password);
 
-        DangNhapDA dangNhapDA = new DangNhapDA();
+        DangNhapService dangNhapDA = new DangNhapService();
         TaiKhoan account = dangNhapDA.dangNhap(tk);
         taiKhoanLogin = account;
 
@@ -72,7 +72,7 @@ public class DangNhapController {
         tk.setTenDangNhap(user);
         tk.setMatKhau(password);
 
-        DangNhapDA dangNhapDA = new DangNhapDA();
+        DangNhapService dangNhapDA = new DangNhapService();
         TaiKhoan account = dangNhapDA.dangNhap(tk);
 
         if (user.length() <= 0 || password.length() <= 0) {

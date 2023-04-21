@@ -1,6 +1,6 @@
 package Application.AppTier.Controller;
 
-import Application.CodeTier.DAL.SanPhamDA;
+import Application.CodeTier.BL.SanPhamService;
 import Application.AppTier.Model.SanPham;
 import MyCustom.MyDialog;
 
@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class SanPhamController {
 
     private ArrayList<SanPham> listSanPham = null;
-    private SanPhamDA spDA = new SanPhamDA();
+    private SanPhamService spDA = new SanPhamService();
 
     public SanPhamController() {
         docListSanPham();
