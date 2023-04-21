@@ -6,13 +6,12 @@ import Application.AppTier.Resource.KhachHangResource;
 import MyCustom.MyDialog;
 
 import java.util.ArrayList;
-import java.util.Locale;
 
 public class KhachHangController {
 
-    private ArrayList<KhachHang> listKhachHang = null;
-    private ArrayList<KhachHangResource> listKhachHangView = new ArrayList();
+    private ArrayList<KhachHang> listKhachHang = new ArrayList();
     private KhachHangService khService = new KhachHangService();
+    private ArrayList<KhachHangResource> listKhachHangView = new ArrayList();
 
     public void docDanhSach() {
         this.listKhachHang = khService.getListKhachHang();
