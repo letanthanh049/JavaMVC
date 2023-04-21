@@ -16,13 +16,9 @@ public class KhachHangController {
 
     public void docDanhSach() {
         this.listKhachHang = khachHangDA.getListKhachHang();
-        System.out.println(this.listKhachHang.get(3).getHo());
-        System.out.println(this.listKhachHang.get(3).getTen());
         this.listKhachHangView.clear();
         for (KhachHang kh : listKhachHang) 
             this.listKhachHangView.add(new KhachHangResource(kh));
-        System.out.println(this.listKhachHangView.get(3).getHo());
-        System.out.println(this.listKhachHangView.get(3).getTen());
     }
 
     public ArrayList<KhachHangResource> getListKhachHang() {

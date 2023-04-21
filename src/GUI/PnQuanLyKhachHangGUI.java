@@ -318,35 +318,16 @@ public class PnQuanLyKhachHangGUI extends JPanel {
         loadDataLenTableKhachHang(dskh);
     }
     
-//    private void loadDataLenTableKhachHang() {
-//        dtmKhachHang.setRowCount(0);
-//        ArrayList<KhachHangResource> dskh = khachHangController.getListKhachHang();
-//
-//        for (KhachHangResource kh : dskh) {
-//            Vector vec = new Vector();
-//            vec.add(kh.getMaKH());
-//            vec.add(kh.getHo());
-//            vec.add(kh.getTen());
-//            vec.add(kh.getGioiTinh());
-//            vec.add(kh.getTongChiTieu());
-//            dtmKhachHang.addRow(vec);
-//        }
-//    }
-
     private void loadDataLenTableKhachHang(ArrayList<KhachHangResource> dskh) {
         dtmKhachHang.setRowCount(0);
         DecimalFormat dcf = new DecimalFormat("###,###");
         for (KhachHangResource kh : dskh) {
-//            System.out.println(dskh.size());
-//            KhachHangResource f = new KhachHangResource();
-//            f = dskh.get(2);
             Vector vec = new Vector();
             vec.add(kh.getMaKH());
             vec.add(kh.getHo());
             vec.add(kh.getTen());
             vec.add(kh.getGioiTinh());
             vec.add(dcf.format(kh.getTongChiTieu()));
-            System.out.println(vec.toString());
             dtmKhachHang.addRow(vec);
         }
     }

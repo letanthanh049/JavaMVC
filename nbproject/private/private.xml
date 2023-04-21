@@ -3,17 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/admin/Desktop/phanlop/JavaMVC/src/GUI/PnQuanLyKhachHangGUI.java</file>
-            <file>file:/C:/Users/admin/Desktop/phanlop/JavaMVC/src/Application/AppTier/Resource/KhachHangResource.java</file>
-            <file>file:/C:/Users/admin/Desktop/phanlop/JavaMVC/src/Application/AppTier/Resource/NhaCungCapResource.java</file>
-            <file>file:/C:/Users/admin/Desktop/phanlop/JavaMVC/src/Application/CodeTier/BL/KhachHangService.java</file>
-            <file>file:/C:/Users/admin/Desktop/phanlop/JavaMVC/src/Application/AppTier/Controller/KhachHangController.java</file>
-            <file>file:/C:/Users/admin/Desktop/phanlop/JavaMVC/src/Application/AppTier/Model/NhaCungCap.java</file>
-            <file>file:/C:/Users/admin/Desktop/phanlop/JavaMVC/src/GUI/DlgTimKhach.java</file>
-            <file>file:/C:/Users/admin/Desktop/phanlop/JavaMVC/src/Application/AppTier/Controller/ThongKeController.java</file>
-            <file>file:/C:/Users/admin/Desktop/phanlop/JavaMVC/src/Application/AppTier/Resource/NhanVienResource.java</file>
+            <file>file:/C:/Users/admin/Desktop/phanlop/JavaMVC/src/Application/AppTier/Controller/CTPhieuNhapController.java</file>
+            <file>file:/C:/Users/admin/Desktop/phanlop/JavaMVC/src/GUI/XuatPhieuNhapGUI.java</file>
+            <file>file:/C:/Users/admin/Desktop/phanlop/JavaMVC/src/Application/CodeTier/DAL/CTPhieuNhapDA.java</file>
+            <file>file:/C:/Users/admin/Desktop/phanlop/JavaMVC/src/Application/AppTier/Resource/PhieuNhapResource.java</file>
+            <file>file:/C:/Users/admin/Desktop/phanlop/JavaMVC/src/GUI/PnQuanLyNhapHangGUI.java</file>
+            <file>file:/C:/Users/admin/Desktop/phanlop/JavaMVC/src/Application/AppTier/Controller/PhieuNhapController.java</file>
+            <file>file:/C:/Users/admin/Desktop/phanlop/JavaMVC/src/GUI/PnQuanLySanPhamGUI.java</file>
             <file>file:/C:/Users/admin/Desktop/phanlop/JavaMVC/src/Application/CodeTier/DAL/KhachHangDA.java</file>
-            <file>file:/C:/Users/admin/Desktop/phanlop/JavaMVC/src/Application/AppTier/Model/KhachHang.java</file>
+            <file>file:/C:/Users/admin/Desktop/phanlop/JavaMVC/src/Application/AppTier/Resource/CTPhieuNhapResource.java</file>
         </group>
     </open-files>
 </project-private>

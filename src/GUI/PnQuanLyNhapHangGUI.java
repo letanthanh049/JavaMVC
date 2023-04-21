@@ -8,7 +8,10 @@ import Application.AppTier.Controller.SanPhamController;
 import Application.AppTier.Model.CTPhieuNhap;
 import Application.AppTier.Model.PhieuNhap;
 import Application.AppTier.Model.SanPham;
+import Application.AppTier.Resource.CTPhieuNhapResource;
 import Application.AppTier.Resource.NhanVienResource;
+import Application.AppTier.Resource.PhieuNhapResource;
+import Application.AppTier.Resource.SanPhamResource;
 
 import MyCustom.MyDialog;
 import MyCustom.MyTable;
@@ -256,7 +259,6 @@ public class PnQuanLyNhapHangGUI extends javax.swing.JPanel {
         jLabel1.setText("Kho hàng");
         jPanel2.add(jLabel1);
 
-        btnResetKho.setIcon(new javax.swing.ImageIcon("E:\\LapTrinhJava\\DoAn_QuanLyBanPizza\\image\\Refresh-icon.png")); // NOI18N
         btnResetKho.setPreferredSize(new java.awt.Dimension(40, 40));
         btnResetKho.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -273,7 +275,6 @@ public class PnQuanLyNhapHangGUI extends javax.swing.JPanel {
         txtTimKiem.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jPanel15.add(txtTimKiem);
 
-        btnTimKiem.setIcon(new javax.swing.ImageIcon("E:\\LapTrinhJava\\DoAn_QuanLyBanPizza\\image\\Search-icon.png")); // NOI18N
         btnTimKiem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnTimKiemActionPerformed(evt);
@@ -330,7 +331,7 @@ public class PnQuanLyNhapHangGUI extends javax.swing.JPanel {
                 .addGroup(pnTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnTableLayout.createSequentialGroup()
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 647, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addGap(0, 13, Short.MAX_VALUE))
                     .addGroup(pnTableLayout.createSequentialGroup()
                         .addGroup(pnTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(scrTblGioNhap)
@@ -399,7 +400,6 @@ public class PnQuanLyNhapHangGUI extends javax.swing.JPanel {
         jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
 
         btnThemVaoGio.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        btnThemVaoGio.setIcon(new javax.swing.ImageIcon("E:\\LapTrinhJava\\DoAn_QuanLyBanPizza\\image\\check-icon.png")); // NOI18N
         btnThemVaoGio.setText("Chọn nhập");
         btnThemVaoGio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -409,7 +409,6 @@ public class PnQuanLyNhapHangGUI extends javax.swing.JPanel {
         jPanel11.add(btnThemVaoGio);
 
         btnXoaKhoiGio.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        btnXoaKhoiGio.setIcon(new javax.swing.ImageIcon("E:\\LapTrinhJava\\DoAn_QuanLyBanPizza\\image\\delete-icon.png")); // NOI18N
         btnXoaKhoiGio.setText("Xoá");
         btnXoaKhoiGio.setPreferredSize(new java.awt.Dimension(141, 41));
         btnXoaKhoiGio.addActionListener(new java.awt.event.ActionListener() {
@@ -420,7 +419,6 @@ public class PnQuanLyNhapHangGUI extends javax.swing.JPanel {
         jPanel1.add(btnXoaKhoiGio);
 
         btnXacNhan.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        btnXacNhan.setIcon(new javax.swing.ImageIcon("E:\\LapTrinhJava\\DoAn_QuanLyBanPizza\\image\\check-icon.png")); // NOI18N
         btnXacNhan.setText("Xác nhận");
         btnXacNhan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -569,7 +567,7 @@ public class PnQuanLyNhapHangGUI extends javax.swing.JPanel {
         );
         pnNhapHangLayout.setVerticalGroup(
             pnNhapHangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnTable, javax.swing.GroupLayout.DEFAULT_SIZE, 808, Short.MAX_VALUE)
+            .addComponent(pnTable, javax.swing.GroupLayout.DEFAULT_SIZE, 813, Short.MAX_VALUE)
             .addGroup(pnNhapHangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(pnNhapHangLayout.createSequentialGroup()
                     .addContainerGap()
@@ -587,7 +585,6 @@ public class PnQuanLyNhapHangGUI extends javax.swing.JPanel {
         jLabel17.setText("Phiếu nhập");
         jPanel22.add(jLabel17);
 
-        btnResetTabXemLai.setIcon(new javax.swing.ImageIcon("E:\\LapTrinhJava\\DoAn_QuanLyBanPizza\\image\\Refresh-icon.png")); // NOI18N
         btnResetTabXemLai.setPreferredSize(new java.awt.Dimension(40, 40));
         btnResetTabXemLai.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -825,8 +822,8 @@ public class PnQuanLyNhapHangGUI extends javax.swing.JPanel {
 
     private void loadDataTableKho() {
         dtmKho.setRowCount(0);
-        ArrayList<SanPham> dssp = sanPhamController.getListSanPham();
-        for (SanPham sp : dssp) {
+        ArrayList<SanPhamResource> dssp = sanPhamController.getListSanPham();
+        for (SanPhamResource sp : dssp) {
             if (sp.getMaLoai() != 1) {
                 Vector vec = new Vector();
                 vec.add(sp.getMaSP());
@@ -839,8 +836,8 @@ public class PnQuanLyNhapHangGUI extends javax.swing.JPanel {
 
     private void loadDataTableKho(String tuKhoa) {
         dtmKho.setRowCount(0);
-        ArrayList<SanPham> dssp = sanPhamController.getSanPhamTheoTen(tuKhoa);
-        for (SanPham sp : dssp) {
+        ArrayList<SanPhamResource> dssp = sanPhamController.getSanPhamTheoTen(tuKhoa);
+        for (SanPhamResource sp : dssp) {
             if (sp.getMaLoai() != 1) {
                 Vector vec = new Vector();
                 vec.add(sp.getMaSP());
@@ -874,14 +871,14 @@ public class PnQuanLyNhapHangGUI extends javax.swing.JPanel {
 
     private void loadDataTablePhieuNhap() {
         phieuNhapController.docDanhSach();
-        ArrayList<PhieuNhap> dspn = phieuNhapController.getListPhieuNhap();
+        ArrayList<PhieuNhapResource> dspn = phieuNhapController.getListPhieuNhap();
         duaDataVaoTablePhieuNhap(dspn);
     }
 
-    private void duaDataVaoTablePhieuNhap(ArrayList<PhieuNhap> dspn) {
+    private void duaDataVaoTablePhieuNhap(ArrayList<PhieuNhapResource> dspn) {
         if (dspn != null) {
             dtmPhieuNhap.setRowCount(0);
-            for (PhieuNhap pn : dspn) {
+            for (PhieuNhapResource pn : dspn) {
                 Vector vec = new Vector();
                 vec.add(pn.getMaPN());
                 vec.add(sdf.format(pn.getNgayLap()));
@@ -893,21 +890,21 @@ public class PnQuanLyNhapHangGUI extends javax.swing.JPanel {
 
     private void loadDataTablePhieuNhapTheoGia(String giaThap, String giaCao) {
         phieuNhapController.docDanhSach();
-        ArrayList<PhieuNhap> dspn = phieuNhapController.getListPhieuNhapTheoGia(giaThap, giaCao);
+        ArrayList<PhieuNhapResource> dspn = phieuNhapController.getListPhieuNhapTheoGia(giaThap, giaCao);
         duaDataVaoTablePhieuNhap(dspn);
     }
 
     private void loadDataTablePhieuNhapTheoNgay(String tuNgay, String denNgay) {
         phieuNhapController.docDanhSach();
-        ArrayList<PhieuNhap> dspn = phieuNhapController.getListPhieuNhapTheoNgay(tuNgay, denNgay);
+        ArrayList<PhieuNhapResource> dspn = phieuNhapController.getListPhieuNhapTheoNgay(tuNgay, denNgay);
         duaDataVaoTablePhieuNhap(dspn);
     }
 
     private void loadDataTableCTPhieuNhap() {
         dtmCTPhieuNhap.setRowCount(0);
-        ArrayList<CTPhieuNhap> dsct = ctPhieuNhapController.getListPhieuNhap();
+        ArrayList<CTPhieuNhapResource> dsct = ctPhieuNhapController.getListPhieuNhap();
         if (dsct != null) {
-            for (CTPhieuNhap ct : dsct) {
+            for (CTPhieuNhapResource ct : dsct) {
                 Vector vec = new Vector();
                 vec.add(ct.getMaSP());
                 vec.add(dcf.format(ct.getSoLuong()));
@@ -920,9 +917,9 @@ public class PnQuanLyNhapHangGUI extends javax.swing.JPanel {
 
     private void loadDataTableCTPhieuNhap(String maPN) {
         dtmCTPhieuNhap.setRowCount(0);
-        ArrayList<CTPhieuNhap> dsct = ctPhieuNhapController.getListPhieuNhap(maPN);
+        ArrayList<CTPhieuNhapResource> dsct = ctPhieuNhapController.getListPhieuNhap(maPN);
         if (dsct != null) {
-            for (CTPhieuNhap ct : dsct) {
+            for (CTPhieuNhapResource ct : dsct) {
                 Vector vec = new Vector();
                 vec.add(ct.getMaSP());
                 vec.add(dcf.format(ct.getSoLuong()));
@@ -1047,17 +1044,16 @@ public class PnQuanLyNhapHangGUI extends javax.swing.JPanel {
 
     private void tblPhieuNhapMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblPhieuNhapMouseClicked
         int row = tblPhieuNhap.getSelectedRow();
+        String maPN = tblPhieuNhap.getValueAt(row, 0) + "";
         if (row < 0) {
             return;
         }
-        String maPN = tblPhieuNhap.getValueAt(row, 0) + "";
-        PhieuNhap pn = phieuNhapController.timPhieuNhap(maPN);
+        PhieuNhapResource pn = phieuNhapController.timPhieuNhap(maPN);
         txtMaPN.setText(pn.getMaPN() + "");
         txtMaNCC.setText(pn.getMaNCC() + "");
         txtMaNV.setText(pn.getMaNV() + "");
         txtNgayLap.setText(sdf.format(pn.getNgayLap()));
         txtTongTienPN.setText(dcf.format(pn.getTongTien()));
-
         loadDataTableCTPhieuNhap(maPN);
     }//GEN-LAST:event_tblPhieuNhapMouseClicked
 

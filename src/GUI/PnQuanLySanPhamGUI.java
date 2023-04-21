@@ -4,6 +4,7 @@ import Application.AppTier.Controller.LoaiController;
 import Application.AppTier.Controller.SanPhamController;
 import Application.AppTier.Model.LoaiSP;
 import Application.AppTier.Model.SanPham;
+import Application.AppTier.Resource.SanPhamResource;
 
 import static Main.Main.changLNF;
 
@@ -428,11 +429,11 @@ public class PnQuanLySanPhamGUI extends JPanel {
         spController.docListSanPham();
         dtmSanPham.setRowCount(0);
 
-        ArrayList<SanPham> dssp = spController.getListSanPham();
+        ArrayList<SanPhamResource> dssp = spController.getListSanPham();
 
         DecimalFormat dcf = new DecimalFormat("###,###");
 
-        for (SanPham sp : dssp) {
+        for (SanPhamResource sp : dssp) {
             Vector vec = new Vector();
             vec.add(sp.getMaSP());
             vec.add(sp.getTenSP());
@@ -561,10 +562,10 @@ public class PnQuanLySanPhamGUI extends JPanel {
     private void xuLyTimKiem() {
         String ten = txtTimKiem.getText().toLowerCase();
         dtmSanPham.setRowCount(0);
-        ArrayList<SanPham> dssp = null;
+        ArrayList<SanPhamResource> dssp = null;
         dssp = spController.getSanPhamTheoTen(ten);
         DecimalFormat dcf = new DecimalFormat("###,###");
-        for (SanPham sp : dssp) {
+        for (SanPhamResource sp : dssp) {
             Vector vec = new Vector();
             vec.add(sp.getMaSP());
             vec.add(sp.getTenSP());

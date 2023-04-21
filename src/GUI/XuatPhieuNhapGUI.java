@@ -5,6 +5,8 @@ import Application.AppTier.Controller.PhieuNhapController;
 import Application.AppTier.Controller.SanPhamController;
 import Application.AppTier.Model.CTPhieuNhap;
 import Application.AppTier.Model.SanPham;
+import Application.AppTier.Resource.CTPhieuNhapResource;
+import Application.AppTier.Resource.SanPhamResource;
 import MyCustom.MyDialog;
 import java.awt.print.PrinterException;
 import java.text.DecimalFormat;
@@ -31,7 +33,7 @@ public class XuatPhieuNhapGUI extends javax.swing.JDialog {
         initComponents();
         
         txtChiTiet.setEditable(false);
-
+        
         for (CTPhieuNhap ctpn : this.listCTPhieuNhap) {
             this.tongTien += ctpn.getThanhTien();
         }
@@ -39,6 +41,10 @@ public class XuatPhieuNhapGUI extends javax.swing.JDialog {
         this.setModal(true);
         btnInPhieu.setEnabled(false);
     }
+
+//    XuatPhieuNhapGUI(String nhaCungCap, String nhanVien, ArrayList<CTPhieuNhapResource> dsct) {
+//        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+//    }
 
     public boolean getCheckNhap() {
         return checkNhap;
@@ -113,7 +119,7 @@ public class XuatPhieuNhapGUI extends javax.swing.JDialog {
         btnInPhieu.setEnabled(true);
 
         SanPhamController sanPhamController = new SanPhamController();
-        ArrayList<SanPham> dssp = sanPhamController.getListSanPham();
+        ArrayList<SanPhamResource> dssp = sanPhamController.getListSanPham();
 
         txtChiTiet.setContentType("text/html");
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
@@ -159,7 +165,7 @@ public class XuatPhieuNhapGUI extends javax.swing.JDialog {
         for (CTPhieuNhap ctpn : listCTPhieuNhap) {
             hd += "<tr>";
             hd += "<td style='text-align:center;'>" + ctpn.getMaSP() + "</td>";
-            for (SanPham sp : dssp) {
+            for (SanPhamResource sp : dssp) {
                 if (sp.getMaSP() == ctpn.getMaSP()) {
                     hd += "<td style='text-align:left;'>" + sp.getTenSP() + "</td>";
                     break;

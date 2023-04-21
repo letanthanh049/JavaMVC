@@ -1,5 +1,7 @@
 package Application.AppTier.Resource;
 
+import Application.AppTier.Model.CTPhieuNhap;
+
 public class CTPhieuNhapResource {
     private int maPN;
     private int maSP;
@@ -16,6 +18,14 @@ public class CTPhieuNhapResource {
         this.soLuong = soLuong;
         this.donGia = donGia;
         this.thanhTien = thanhTien;
+    }
+    
+    public CTPhieuNhapResource(CTPhieuNhap ctpn) {
+        this.maPN = ctpn.getMaPN();
+        this.maSP = ctpn.getMaSP();
+        this.soLuong = ctpn.getSoLuong();
+        this.donGia = ctpn.getDonGia();
+        this.thanhTien = ctpn.getThanhTien();
     }
 
     public int getMaPN() {
