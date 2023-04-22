@@ -364,6 +364,11 @@ public class PnQuanLyNhapHangGUI extends javax.swing.JPanel {
         jTextField2.setColumns(15);
         jTextField2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jTextField2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField2ActionPerformed(evt);
+            }
+        });
         jPanel7.add(jTextField2);
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
@@ -389,6 +394,11 @@ public class PnQuanLyNhapHangGUI extends javax.swing.JPanel {
         jTextField3.setColumns(15);
         jTextField3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jTextField3.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField3ActionPerformed(evt);
+            }
+        });
         jPanel8.add(jTextField3);
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
@@ -982,6 +992,9 @@ public class PnQuanLyNhapHangGUI extends javax.swing.JPanel {
     private void tblKhoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblKhoMouseClicked
         txtDonGia.setText("1");
         txtSoLuong.setText("1");
+        int row = tblKho.getSelectedRow();
+        jTextField2.setText(tblKho.getValueAt(row,0) + "");
+        jTextField3.setText(tblKho.getValueAt(row,1) + "");
         tblGioNhap.clearSelection();
     }//GEN-LAST:event_tblKhoMouseClicked
 
@@ -991,6 +1004,8 @@ public class PnQuanLyNhapHangGUI extends javax.swing.JPanel {
         if (row > -1) {
             txtSoLuong.setText(tblGioNhap.getValueAt(row, 2) + "");
             txtDonGia.setText(tblGioNhap.getValueAt(row, 3) + "");
+            jTextField2.setText(tblGioNhap.getValueAt(row,0) + "");
+            jTextField3.setText(tblGioNhap.getValueAt(row,1) + "");
         }
     }//GEN-LAST:event_tblGioNhapMouseClicked
 
@@ -1095,6 +1110,14 @@ public class PnQuanLyNhapHangGUI extends javax.swing.JPanel {
         loadDataTableKho();
         dtmGioNhap.setRowCount(0);
     }//GEN-LAST:event_btnResetKhoActionPerformed
+
+    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField2ActionPerformed
+
+    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField3ActionPerformed
 
 // <editor-fold defaultstate="collapsed" desc="Variable">
     // Variables declaration - do not modify//GEN-BEGIN:variables
