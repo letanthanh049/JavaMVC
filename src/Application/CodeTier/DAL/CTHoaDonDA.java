@@ -76,7 +76,7 @@ public class CTHoaDonDA {
     public boolean addCTHoaDon(CTHoaDon cthd) {
         boolean result = false;
         try {
-            String sql = "INSERT INTO cthoadon VALUES(?,?,?,?,?)";
+            String sql = "INSERT INTO cthoadon (MaHD, MaSP, SoLuong, DonGia, ThanhTien) VALUES(?,?,?,?,?)";
             PreparedStatement prep = MyConnect.conn.prepareStatement(sql);
             prep.setInt(1, cthd.getMaHD());
             prep.setInt(2, cthd.getMaSP());
