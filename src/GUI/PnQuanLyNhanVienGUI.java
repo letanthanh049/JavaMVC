@@ -50,7 +50,7 @@ public class PnQuanLyNhanVienGUI extends JPanel {
     JComboBox<String> cmbGioiTinh;
     MyTable tblNhanVien;
     DefaultTableModel dtmNhanVien;
-    JButton btnReset, btnThemNV, btnSuaNV, btnXoaNV, btnTimNV, btnCapTaiKhoan, btnResetMatKhau, btnXoaTaiKhoan, btnXuatExcel, btnNhapExcel;
+    JButton btnReset, btnThemNV, btnSuaNV, btnXoaNV, btnTimNV, btnCapTaiKhoan, btnResetMatKhau, btnXoaTaiKhoan,btnMoTK, btnXuatExcel, btnNhapExcel;
 
     private void addControlsNhanVien() {
         this.setLayout(new BorderLayout());
@@ -235,16 +235,19 @@ public class PnQuanLyNhanVienGUI extends JPanel {
         btnCapTaiKhoan = new JButton("Cấp tài khoản");
         btnResetMatKhau = new JButton("Mật khẩu/Quyền");
         btnXoaTaiKhoan = new JButton("Khoá tài khoản");
+        btnMoTK = new JButton("Mở tài khoản");
         btnCapTaiKhoan.setIcon(new ImageIcon("image/icons8_man_with_key_32px.png"));
         btnResetMatKhau.setIcon(new ImageIcon("image/icons8_password_reset_32px.png"));
         btnXoaTaiKhoan.setIcon(new ImageIcon("image/icons8_denied_32px.png"));
+        btnMoTK.setIcon(new ImageIcon("image/icons8_denied_32px.png"));
         btnCapTaiKhoan.setFont(fontButton);
         btnResetMatKhau.setFont(fontButton);
         btnXoaTaiKhoan.setFont(fontButton);
+        btnMoTK.setFont(fontButton);
         pnButton2.add(btnCapTaiKhoan);
         pnButton2.add(btnResetMatKhau);
         pnButton2.add(btnXoaTaiKhoan);
-
+        pnButton2.add(btnMoTK);
         pnNhanVien.add(pnTopNV);
         pnNhanVien.add(pnButton);
         pnNhanVien.add(pnButton2);
@@ -504,6 +507,13 @@ public class PnQuanLyNhanVienGUI extends JPanel {
             }
         });
 
+        btnMoTK.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                xuLyMoTaiKhoan();
+            }
+        });
+        
         btnReset.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -660,6 +670,12 @@ public class PnQuanLyNhanVienGUI extends JPanel {
         loadDataTblNhanVien();
     }
 
+    private void xuLyMoTaiKhoan() {
+        TaiKhoanController taiKhoanController = new TaiKhoanController();
+        taiKhoanController.moKhoaTaiKhoan(txtMaNV.getText());
+        loadDataTblNhanVien();
+    }
+    
     private void xuLyNhapExcel() {
         MyDialog dlg = new MyDialog("Dữ liệu cũ sẽ bị xoá, tiếp tục?", MyDialog.WARNING_DIALOG);
         if (dlg.getAction() != MyDialog.OK_OPTION) {
