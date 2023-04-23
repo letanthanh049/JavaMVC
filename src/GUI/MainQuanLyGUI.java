@@ -104,6 +104,21 @@ public class MainQuanLyGUI extends JFrame {
         lblNhanVien = new JLabel(new ImageIcon("image/ManagerUI/lblNhanVien.png"));
         lblKhachHang = new JLabel(new ImageIcon("image/ManagerUI/lblKhachHang.png"));
         lblThongKe = new JLabel(new ImageIcon("image/ManagerUI/lblThongKe.png"));
+        JLabel btnLogout = new JLabel(new ImageIcon("image/ManagerUI/exit.png"));
+        btnLogout.setToolTipText("Đăng xuất");
+        btnLogout.setBounds(0, 50, 46, 46);
+        btnLogout.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+
+        btnLogout.addMouseListener(new MouseAdapter() {
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            dispose();
+            JOptionPane.showMessageDialog(null, "Đăng xuất thành công!");
+            dispose();
+            DangNhapGUI login = new DangNhapGUI();
+            login.showWindow();
+        }
+        });
 
         listMenuLeft = new ArrayList<>();
         listMenuLeft.add(lblBanHang);
@@ -122,6 +137,7 @@ public class MainQuanLyGUI extends JFrame {
             lbl.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
             pnMenuLeft.add(lbl);
         }
+        pnMenuLeft.add(btnLogout);
 
         lblBanHang.setBackground(clLeftItemSelected);
         lblBanHang.setVisible(true);

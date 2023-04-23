@@ -2,6 +2,7 @@ package Application.AppTier.Controller;
 
 import Application.CodeTier.BL.NhaCungCapService;
 import Application.AppTier.Model.NhaCungCap;
+import Application.AppTier.Resource.NhaCungCapResource;
 import MyCustom.MyDialog;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
@@ -11,6 +12,7 @@ public class NhaCungCapController {
 
     private NhaCungCapService nhaCungCapDA = new NhaCungCapService();
     private ArrayList<NhaCungCap> listNhaCungCap = null;
+    private ArrayList<NhaCungCapResource> listNhaCungCapView = new ArrayList();
 
     public NhaCungCapController() {
         docDanhSach();
@@ -18,13 +20,16 @@ public class NhaCungCapController {
 
     public void docDanhSach() {
         this.listNhaCungCap = nhaCungCapDA.getListNhaCungCap();
+        this.listNhaCungCapView.clear();
+        for (NhaCungCap ncc : listNhaCungCap) 
+            this.listNhaCungCapView.add(new NhaCungCapResource(ncc));
     }
 
-    public ArrayList<NhaCungCap> getListNhaCungCap() {
-        if (this.listNhaCungCap == null) {
+    public ArrayList<NhaCungCapResource> getListNhaCungCap() {
+        if (this.listNhaCungCapView == null) {
             docDanhSach();
         }
-        return this.listNhaCungCap;
+        return this.listNhaCungCapView;
     }
 
     public boolean themNhaCungCap(String tenNCC, String diaChi, String dienThoai) {

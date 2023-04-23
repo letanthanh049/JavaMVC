@@ -2,6 +2,7 @@ package GUI;
 
 import Application.AppTier.Controller.NhaCungCapController;
 import Application.AppTier.Model.NhaCungCap;
+import Application.AppTier.Resource.NhaCungCapResource;
 import MyCustom.MyDialog;
 import MyCustom.MyTable;
 import java.util.ArrayList;
@@ -46,10 +47,10 @@ public class DlgChonNhaCungCap extends javax.swing.JDialog {
     private void loadTableNhaCungCap() {
         dtmNhaCungCap.setRowCount(0);
         nhaCungCapController.docDanhSach();
-        ArrayList<NhaCungCap> dsncc = nhaCungCapController.getListNhaCungCap();
+        ArrayList<NhaCungCapResource> dsncc = nhaCungCapController.getListNhaCungCap();
 
         if (dsncc != null) {
-            for (NhaCungCap ncc : dsncc) {
+            for (NhaCungCapResource ncc : dsncc) {
                 Vector vec = new Vector();
                 vec.add(ncc.getMaNCC());
                 vec.add(ncc.getTenNCC());

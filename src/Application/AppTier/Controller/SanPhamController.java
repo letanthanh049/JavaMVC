@@ -2,6 +2,7 @@ package Application.AppTier.Controller;
 
 import Application.CodeTier.BL.SanPhamService;
 import Application.AppTier.Model.SanPham;
+import Application.AppTier.Resource.SanPhamResource;
 import MyCustom.MyDialog;
 
 import java.util.ArrayList;
@@ -10,20 +11,24 @@ public class SanPhamController {
 
     private ArrayList<SanPham> listSanPham = null;
     private SanPhamService spDA = new SanPhamService();
+    private ArrayList<SanPhamResource> listSanPhamView = new ArrayList();
 
     public SanPhamController() {
         docListSanPham();
     }
 
     public void docListSanPham() {
-        listSanPham = spDA.getListSanPham();
+        this.listSanPham = spDA.getListSanPham();
+        this.listSanPhamView.clear();
+        for (SanPham sp : listSanPham)
+            this.listSanPhamView.add(new SanPhamResource(sp));
     }
 
-    public ArrayList<SanPham> getListSanPham() {
-        if (listSanPham == null) {
+    public ArrayList<SanPhamResource> getListSanPham() {
+        if (listSanPhamView == null) {
             docListSanPham();
         }
-        return listSanPham;
+        return listSanPhamView;
     }
 
     public SanPham getSanPham(String ma) {
@@ -41,9 +46,9 @@ public class SanPhamController {
         return null;
     }
 
-    public ArrayList<SanPham> getSanPhamTheoTen(String ten) {
-        ArrayList<SanPham> dssp = new ArrayList<>();
-        for (SanPham sp : listSanPham) {
+    public ArrayList<SanPhamResource> getSanPhamTheoTen(String ten) {
+        ArrayList<SanPhamResource> dssp = new ArrayList<>();
+        for (SanPhamResource sp : listSanPhamView) {
             String tenSP = sp.getTenSP().toLowerCase();
             if (tenSP.toLowerCase().contains(ten.toLowerCase())) {
                 dssp.add(sp);
@@ -52,12 +57,12 @@ public class SanPhamController {
         return dssp;
     }
 
-    public ArrayList<SanPham> getSanPhamTheoLoai(String ma) {
+    public ArrayList<SanPhamResource> getSanPhamTheoLoai(String ma) {
         if (!ma.trim().equals("")) {
-            ArrayList<SanPham> dssp = new ArrayList<>();
+            ArrayList<SanPhamResource> dssp = new ArrayList<>();
             try {
                 int maLoai = Integer.parseInt(ma);
-                for (SanPham sp : listSanPham) {
+                for (SanPhamResource sp : listSanPhamView) {
                     if (sp.getMaLoai() == maLoai) {
                         dssp.add(sp);
                     }

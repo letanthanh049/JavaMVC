@@ -3,6 +3,7 @@ package Application.AppTier.Controller;
 import MyCustom.MyDialog;
 import Application.CodeTier.BL.PhieuNhapService;
 import Application.AppTier.Model.PhieuNhap;
+import Application.AppTier.Resource.PhieuNhapResource;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -11,6 +12,7 @@ public class PhieuNhapController {
 
     private PhieuNhapService phieuNhapDA = new PhieuNhapService();
     private ArrayList<PhieuNhap> listPhieuNhap = null;
+    private ArrayList<PhieuNhapResource> listPhieuNhapView = new ArrayList();
 
     public PhieuNhapController() {
         docDanhSach();
@@ -18,13 +20,16 @@ public class PhieuNhapController {
 
     public void docDanhSach() {
         this.listPhieuNhap = phieuNhapDA.getListPhieuNhap();
+        this.listPhieuNhapView.clear();
+        for (PhieuNhap pn : listPhieuNhap) 
+            this.listPhieuNhapView.add(new PhieuNhapResource(pn));
     }
 
-    public ArrayList<PhieuNhap> getListPhieuNhap() {
-        if (listPhieuNhap == null) {
+    public ArrayList<PhieuNhapResource> getListPhieuNhap() {
+        if (listPhieuNhapView == null) {
             docDanhSach();
         }
-        return listPhieuNhap;
+        return listPhieuNhapView;
     }
 
     public boolean themPhieuNhap(String nhaCungCap, String nhanVien, int tongTien) {
@@ -46,9 +51,9 @@ public class PhieuNhapController {
         return phieuNhapDA.getLastID();
     }
 
-    public PhieuNhap timPhieuNhap(String maPN) {
+    public PhieuNhapResource timPhieuNhap(String maPN) {
         int ma = Integer.parseInt(maPN);
-        for (PhieuNhap pn : listPhieuNhap) {
+        for (PhieuNhapResource pn : listPhieuNhapView) {
             if (pn.getMaPN() == ma) {
                 return pn;
             }
@@ -56,7 +61,7 @@ public class PhieuNhapController {
         return null;
     }
 
-    public ArrayList<PhieuNhap> getListPhieuNhapTheoGia(String giaThap, String giaCao) {
+    public ArrayList<PhieuNhapResource> getListPhieuNhapTheoGia(String giaThap, String giaCao) {
         try {
             int min = Integer.parseInt(giaThap);
             int max = Integer.parseInt(giaCao);
@@ -64,8 +69,8 @@ public class PhieuNhapController {
                 new MyDialog("Hãy nhập khoảng giá phù hợp!", MyDialog.ERROR_DIALOG);
                 return null;
             }
-            ArrayList<PhieuNhap> result = new ArrayList<>();
-            for (PhieuNhap pn : listPhieuNhap) {
+            ArrayList<PhieuNhapResource> result = new ArrayList<>();
+            for (PhieuNhapResource pn : listPhieuNhapView) {
                 if (pn.getTongTien() <= max && pn.getTongTien() >= min) {
                     result.add(pn);
                 }
@@ -77,7 +82,7 @@ public class PhieuNhapController {
         return null;
     }
 
-    public ArrayList<PhieuNhap> getListPhieuNhapTheoNgay(String tuNgay, String denNgay) {
+    public ArrayList<PhieuNhapResource> getListPhieuNhapTheoNgay(String tuNgay, String denNgay) {
         try {
             SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyy");
             
@@ -87,8 +92,8 @@ public class PhieuNhapController {
                 new MyDialog("Hãy nhập khoảng ngày phù hợp!", MyDialog.ERROR_DIALOG);
                 return null;
             }
-            ArrayList<PhieuNhap> result = new ArrayList<>();
-            for (PhieuNhap pn : listPhieuNhap) {
+            ArrayList<PhieuNhapResource> result = new ArrayList<>();
+            for (PhieuNhapResource pn : listPhieuNhapView) {
                 if (pn.getNgayLap().after(min) && pn.getNgayLap().before(max)) {
                     result.add(pn);
                 }

@@ -1,5 +1,7 @@
 package Application.AppTier.Resource;
 
+import Application.AppTier.Model.SanPham;
+
 public class SanPhamResource {
     private int maSP;
     private String tenSP;
@@ -21,6 +23,16 @@ public class SanPhamResource {
         this.donViTinh = donViTinh;
         this.hinhAnh = hinhAnh;
         this.donGia = donGia;
+    }
+    
+    public SanPhamResource(SanPham sp) {
+        this.maSP = sp.getMaSP();
+        this.tenSP = sp.getTenSP();
+        this.maLoai = sp.getMaLoai();
+        this.soLuong = sp.getSoLuong();
+        this.donViTinh = sp.getDonViTinh();
+        this.hinhAnh = sp.getHinhAnh();
+        this.donGia = sp.getDonGia();
     }
 
     public int getMaSP() {

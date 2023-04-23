@@ -1,6 +1,7 @@
 package GUI;
 
 import Application.AppTier.Controller.KhachHangController;
+import Application.AppTier.Model.KhachHang;
 import Application.AppTier.Resource.KhachHangResource;
 import MyCustom.MyDialog;
 import MyCustom.MyTable;
@@ -344,7 +345,6 @@ public class PnQuanLyKhachHangGUI extends JPanel {
     }
 
     private void xuLyTimKiemTheoKhoang() {
-//        ArrayList<KhachHangResource> dskh = khachHangController.timKiemKhachHang(txtMinchiTieu.getText(), txtMaxChiTieu.getText());
         ArrayList<KhachHangResource> dskh = khachHangController.timKiemKhachHang(txtMinchiTieu.getText(), txtMaxChiTieu.getText());
         if (dskh == null)
             return;

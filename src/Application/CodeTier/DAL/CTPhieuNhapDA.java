@@ -83,7 +83,7 @@ public class CTPhieuNhapDA {
             pre.setInt(2, ctpn.getMaSP());
             pre.executeUpdate();
 
-            String sql = "INSERT INTO ctphieunhap VALUES(?,?,?,?,?)";
+            String sql = "INSERT INTO ctphieunhap(MaPN,MaSP,SoLuong,DonGia,ThanhTien) VALUES(?,?,?,?,?)";
             PreparedStatement prep = MyConnect.conn.prepareStatement(sql);
             prep.setInt(1, ctpn.getMaPN());
             prep.setInt(2, ctpn.getMaSP());

@@ -11,6 +11,7 @@ import Application.AppTier.Model.HoaDon;
 import Application.AppTier.Model.SanPham;
 import Application.AppTier.Model.CTHoaDon;
 import Application.AppTier.Resource.NhanVienResource;
+import Application.AppTier.Resource.SanPhamResource;
 
 import static Main.Main.changLNF;
 
@@ -922,7 +923,7 @@ public class PnQuanLyBanHangGUI extends JPanel {
 
     private void loadDataTableSanPhamBan() {
         dtmSanPhamBan.setRowCount(0);
-        ArrayList<SanPham> dssp = null;
+        ArrayList<SanPhamResource> dssp = null;
 
         if (cmbLoaiSPBanHang.getItemCount() > 0) {
             String loai = cmbLoaiSPBanHang.getSelectedItem() + "";
@@ -938,7 +939,7 @@ public class PnQuanLyBanHangGUI extends JPanel {
             dssp = spController.getListSanPham();
         }
 
-        for (SanPham sp : dssp) {
+        for (SanPhamResource sp : dssp) {
             Vector vec = new Vector();
             vec.add(sp.getMaSP());
             vec.add(sp.getTenSP());
@@ -1123,10 +1124,10 @@ public class PnQuanLyBanHangGUI extends JPanel {
     private void xuLyTimKiemTheoTen() {
         String ten = txtTenSPBanHang.getText().toLowerCase();
         dtmSanPhamBan.setRowCount(0);
-        ArrayList<SanPham> dssp = null;
+        ArrayList<SanPhamResource> dssp = null;
         dssp = spController.getSanPhamTheoTen(ten);
 
-        for (SanPham sp : dssp) {
+        for (SanPhamResource sp : dssp) {
             Vector vec = new Vector();
             vec.add(sp.getMaSP());
             vec.add(sp.getTenSP());

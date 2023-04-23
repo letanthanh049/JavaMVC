@@ -1,6 +1,7 @@
 package Application.AppTier.Controller;
 
 import Application.AppTier.Model.CTPhieuNhap;
+import Application.AppTier.Resource.CTPhieuNhapResource;
 import Application.CodeTier.BL.CTPhieuNhapService;
 import java.util.ArrayList;
 
@@ -8,6 +9,7 @@ public class CTPhieuNhapController {
 
     private ArrayList<CTPhieuNhap> listPhieuNhap = null;
     private CTPhieuNhapService ctPhieuNhapDA = new CTPhieuNhapService();
+    private ArrayList<CTPhieuNhapResource> CTlistPhieuNhapView = new ArrayList();
 
     public CTPhieuNhapController() {
         docDanhSach();
@@ -15,22 +17,25 @@ public class CTPhieuNhapController {
 
     public void docDanhSach() {
         this.listPhieuNhap = ctPhieuNhapDA.getListCTPhieuNhap();
+        this.CTlistPhieuNhapView.clear();
+        for (CTPhieuNhap ctpn : listPhieuNhap) 
+            this.CTlistPhieuNhapView.add(new CTPhieuNhapResource(ctpn));
     }
 
-    public ArrayList<CTPhieuNhap> getListPhieuNhap() {
-        if (listPhieuNhap == null) {
+    public ArrayList<CTPhieuNhapResource> getListPhieuNhap() {
+        if (CTlistPhieuNhapView == null) {
             docDanhSach();
         }
-        return listPhieuNhap;
+        return CTlistPhieuNhapView;
     }
     
-    public ArrayList<CTPhieuNhap> getListPhieuNhap(String maPN) {
-        ArrayList<CTPhieuNhap> dsct = new ArrayList<>();
+    public ArrayList<CTPhieuNhapResource> getListPhieuNhap(String maPN) {
+        ArrayList<CTPhieuNhapResource> dsct = new ArrayList<>();
         int ma = Integer.parseInt(maPN);
         
-        for(CTPhieuNhap ct: listPhieuNhap) {
-            if(ct.getMaPN() == ma) {
-                dsct.add(ct);
+        for(CTPhieuNhapResource ctpn : CTlistPhieuNhapView) {
+            if(ctpn.getMaPN() == ma) {
+                dsct.add(ctpn);
             }
         }
         

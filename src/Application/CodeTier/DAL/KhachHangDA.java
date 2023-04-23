@@ -31,6 +31,9 @@ public class KhachHangDA {
             }
             return dskh;
         } catch (SQLException ex) {
+            String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
+            System.out.println("Error occurred in method: " + methodName);
+            System.out.println(ex);
         }
         return null;
     }
@@ -59,15 +62,17 @@ public class KhachHangDA {
     public boolean addKhachHang(KhachHang kh) {
         boolean result = false;
         try {
-            String sql = "INSERT INTO khachhang VALUES(?,?,?,?,?,1)";
+            String sql = "INSERT INTO khachhang(Ho, Ten, GioiTinh, TongChiTieu, TinhTrang) VALUES(?,?,?,?,1)";
             PreparedStatement prep = MyConnect.conn.prepareStatement(sql);
-            prep.setInt(1, kh.getMaKH());
-            prep.setString(2, kh.getHo());
-            prep.setString(3, kh.getTen());
-            prep.setString(4, kh.getGioiTinh());
-            prep.setInt(5, kh.getTongChiTieu());
+            prep.setString(1, kh.getHo());
+            prep.setString(2, kh.getTen());
+            prep.setString(3, kh.getGioiTinh());
+            prep.setInt(4, kh.getTongChiTieu());
             result = prep.executeUpdate() > 0;
         } catch (SQLException ex) {
+            String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
+            System.out.println("Error occurred in method: " + methodName);
+            System.out.println(ex);
             return false;
         }
         return result;

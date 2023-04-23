@@ -1,18 +1,18 @@
 package Application.AppTier.Controller;
 
 import Application.CodeTier.BL.KhachHangService;
+import Application.AppTier.Resource.KhachHangResource;
 import Application.AppTier.Model.KhachHang;
 import Application.AppTier.Resource.KhachHangResource;
 import MyCustom.MyDialog;
 
 import java.util.ArrayList;
-import java.util.Locale;
 
 public class KhachHangController {
 
-    private ArrayList<KhachHang> listKhachHang = null;
-    private ArrayList<KhachHangResource> listKhachHangView = new ArrayList();
+    private ArrayList<KhachHang> listKhachHang = new ArrayList();
     private KhachHangService khService = new KhachHangService();
+    private ArrayList<KhachHangResource> listKhachHangView = new ArrayList();
 
     public void docDanhSach() {
         this.listKhachHang = khService.getListKhachHang();
@@ -22,9 +22,9 @@ public class KhachHangController {
     }
 
     public ArrayList<KhachHangResource> getListKhachHang() {
-        if (listKhachHangView == null)
+        if (this.listKhachHangView == null)
             docDanhSach();
-        return listKhachHangView;
+        return this.listKhachHangView;
     }
 
     public ArrayList<KhachHangResource> timKiemKhachHang(String txtMin, String txtMax) {

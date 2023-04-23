@@ -1,5 +1,6 @@
 package Application.AppTier.Resource;
 
+import Application.AppTier.Model.PhieuNhap;
 import java.util.Date;
 
 public class PhieuNhapResource {
@@ -19,6 +20,14 @@ public class PhieuNhapResource {
         this.maNV = maNV;
         this.ngayLap = ngayLap;
         this.tongTien = tongTien;
+    }
+    
+    public PhieuNhapResource(PhieuNhap pn) {
+        this.maPN = pn.getMaPN();
+        this.maNCC = pn.getMaNCC();
+        this.maNV = pn.getMaNV();
+        this.ngayLap = pn.getNgayLap();
+        this.tongTien = pn.getTongTien();
     }
 
     public int getMaPN() {
