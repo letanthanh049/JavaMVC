@@ -2,6 +2,7 @@ package Application.AppTier.Controller;
 
 import Application.CodeTier.BL.LoaiService;
 import Application.AppTier.Model.LoaiSP;
+import Application.AppTier.Resource.LoaiSPResource;
 import MyCustom.MyDialog;
 import java.util.ArrayList;
 
@@ -9,6 +10,7 @@ public class LoaiController {
 
     private LoaiService loaiDA = new LoaiService();
     private ArrayList<LoaiSP> listLoai = null;
+    private ArrayList<LoaiSPResource> listLoaiView = new ArrayList();
     
     public LoaiController() {
         docDanhSachLoai();
@@ -16,17 +18,18 @@ public class LoaiController {
 
     public void docDanhSachLoai() {
         this.listLoai = loaiDA.getDanhSachLoai();
+        this.listLoaiView.clear();
+        for (LoaiSP lsp : listLoai) 
+            this.listLoaiView.add(new LoaiSPResource(lsp));
     }
 
-    public ArrayList<LoaiSP> getDanhSachLoai() {
-        if (listLoai == null) {
+    public ArrayList<LoaiSPResource> getDanhSachLoai() {
             docDanhSachLoai();
-        }
-        return this.listLoai;
+        return this.listLoaiView;
     }
 
     public String getTenLoai(int ma) {
-        for (LoaiSP loai : listLoai) {
+        for (LoaiSPResource loai : listLoaiView) {
             if (loai.getMaLoai() == ma) {
                 return loai.getMaLoai() + " - " + loai.getTenLoai();
             }

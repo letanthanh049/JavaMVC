@@ -23,9 +23,7 @@ public class CTPhieuNhapController {
     }
 
     public ArrayList<CTPhieuNhapResource> getListPhieuNhap() {
-        if (CTlistPhieuNhapView == null) {
             docDanhSach();
-        }
         return CTlistPhieuNhapView;
     }
     

@@ -2,6 +2,7 @@ package GUI;
 
 import Application.AppTier.Controller.GiamGiaController;
 import Application.AppTier.Model.GiamGia;
+import Application.AppTier.Resource.GiamGiaResource;
 import MyCustom.MyDialog;
 import MyCustom.MyTable;
 
@@ -175,10 +176,10 @@ public class DlgTimMaGiam extends JDialog {
     private void loadDataLenTable() {
         dtmMaGiam.setRowCount(0);
         giamGiaController.docDanhSach();
-        ArrayList<GiamGia> dsg = giamGiaController.getDanhSachGiamGia();
+        ArrayList<GiamGiaResource> dsg = giamGiaController.getDanhSachGiamGia();
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         DecimalFormat dcf = new DecimalFormat(">###,###");
-        for (GiamGia gg : dsg) {
+        for (GiamGiaResource gg : dsg) {
             Vector vec = new Vector();
             vec.add(gg.getMaGiam());
             vec.add(gg.getTenGiamGia());

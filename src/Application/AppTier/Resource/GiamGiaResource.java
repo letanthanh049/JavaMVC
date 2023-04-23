@@ -1,5 +1,6 @@
 package Application.AppTier.Resource;
 
+import Application.AppTier.Model.GiamGia;
 import java.util.Date;
 
 public class GiamGiaResource {
@@ -21,6 +22,15 @@ public class GiamGiaResource {
         this.dieuKien = dieuKien;
         this.ngayBD = ngayBD;
         this.ngayKT = ngayKT;
+    }
+    
+    public GiamGiaResource(GiamGia gg) {
+        this.maGiam = gg.getMaGiam();
+        this.tenGiamGia = gg.getTenGiamGia();
+        this.phanTramGiam = gg.getPhanTramGiam();
+        this.dieuKien = gg.getDieuKien();
+        this.ngayBD = gg.getNgayBD();
+        this.ngayKT = gg.getNgayKT();
     }
 
     public int getMaGiam() {

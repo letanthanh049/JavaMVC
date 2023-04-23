@@ -360,7 +360,7 @@ public class XuatHoaDonGUI extends JDialog {
     private void btnTimKhachActionPerformed(java.awt.event.ActionEvent evt) {
         timKhachUI.setVisible(true);
         if (timKhachUI.khachHangTimDuoc != null) {
-            txtTenKhach.setText(timKhachUI.khachHangTimDuoc.getMaKH() + " - " + timKhachUI.khachHangTimDuoc.getHo() + " " + timKhachUI.khachHangTimDuoc.getTen());
+            txtTenKhach.setText(DlgTimKhach.khachHangTimDuoc.getMaKH() + " - " + DlgTimKhach.khachHangTimDuoc.getHo() + " " + DlgTimKhach.khachHangTimDuoc.getTen());
         }
     }
 

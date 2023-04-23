@@ -2,6 +2,7 @@ package GUI;
 
 import Application.AppTier.Controller.LoaiController;
 import Application.AppTier.Model.LoaiSP;
+import Application.AppTier.Resource.LoaiSPResource;
 import MyCustom.MyDialog;
 import MyCustom.MyTable;
 import java.util.ArrayList;
@@ -26,9 +27,9 @@ public class DlgQuanLyLoai extends javax.swing.JDialog {
 
     private void loadDataLenTblLoai() {
         dtmLoai.setRowCount(0);
-        ArrayList<LoaiSP> dsl = loaiController.getDanhSachLoai();
+        ArrayList<LoaiSPResource> dsl = loaiController.getDanhSachLoai();
         if (dsl != null) {
-            for (LoaiSP loai : dsl) {
+            for (LoaiSPResource loai : dsl) {
                 Vector vec = new Vector();
                 vec.add(loai.getMaLoai());
                 vec.add(loai.getTenLoai());
@@ -188,6 +189,7 @@ public class DlgQuanLyLoai extends javax.swing.JDialog {
         if (loaiController.themLoai(dtmLoai.getRowCount(), txtTenLoai.getText())) {
             loadDataLenTblLoai();
         }
+        loadDataLenTblLoai();
     }//GEN-LAST:event_btnThemActionPerformed
 
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed

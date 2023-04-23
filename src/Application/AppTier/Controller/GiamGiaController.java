@@ -2,6 +2,7 @@ package Application.AppTier.Controller;
 
 import Application.CodeTier.BL.GiamGiaService;
 import Application.AppTier.Model.GiamGia;
+import Application.AppTier.Resource.GiamGiaResource;
 import MyCustom.MyDialog;
 
 import java.util.ArrayList;
@@ -11,6 +12,7 @@ public class GiamGiaController {
 
     private ArrayList<GiamGia> listGiamGia = null;
     private GiamGiaService giamGiaDA = new GiamGiaService();
+    private ArrayList<GiamGiaResource> listGiamGiaView = new ArrayList();
 
     public GiamGiaController() {
         docDanhSach();
@@ -18,12 +20,15 @@ public class GiamGiaController {
 
     public void docDanhSach() {
         this.listGiamGia = giamGiaDA.getDanhSachMaGiam();
+        this.listGiamGiaView.clear();
+        for (GiamGia gg : listGiamGia) 
+            this.listGiamGiaView.add(new GiamGiaResource(gg));
     }
 
-    public ArrayList<GiamGia> getDanhSachGiamGia() {
-        if (this.listGiamGia == null)
+    public ArrayList<GiamGiaResource> getDanhSachGiamGia() {
+        if (this.listGiamGiaView == null)
             docDanhSach();
-        return this.listGiamGia;
+        return this.listGiamGiaView;
     }
 
     public boolean themMaGiam(String ten, String phanTram, String dieuKien, Date ngayBD, Date ngayKT) {
