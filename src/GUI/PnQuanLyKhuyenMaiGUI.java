@@ -2,6 +2,7 @@ package GUI;
 
 import Application.AppTier.Controller.GiamGiaController;
 import Application.AppTier.Model.GiamGia;
+import Application.AppTier.Resource.GiamGiaResource;
 import Main.Main;
 import MyCustom.MyTable;
 import MyCustom.TransparentPanel;
@@ -199,6 +200,19 @@ public class PnQuanLyKhuyenMaiGUI extends JPanel {
     }
 
     private void addEvents() {
+        btnReset.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                loadDataTblKhuyenMai();
+                txtMa.setText("");
+                txtTen.setText("");
+                txtPhanTram.setText("");
+                txtDieuKien.setText("");
+                dateBD.setDate(null);
+                dateKT.setDate(null);
+            }
+        });
+        
         tblKhuyenMai.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -240,10 +254,10 @@ public class PnQuanLyKhuyenMaiGUI extends JPanel {
     private void loadDataTblKhuyenMai() {
         dtmKhuyenMai.setRowCount(0);
         giamGiaController.docDanhSach();
-        ArrayList<GiamGia> dsg = giamGiaController.getDanhSachGiamGia();
+        ArrayList<GiamGiaResource> dsg = giamGiaController.getDanhSachGiamGia();
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         DecimalFormat dcf = new DecimalFormat(">###,###");
-        for (GiamGia gg : dsg) {
+        for (GiamGiaResource gg : dsg) {
             Vector vec = new Vector();
             vec.add(gg.getMaGiam());
             vec.add(gg.getTenGiamGia());

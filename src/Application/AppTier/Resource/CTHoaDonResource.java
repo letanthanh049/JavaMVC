@@ -1,5 +1,7 @@
 package Application.AppTier.Resource;
 
+import Application.AppTier.Model.CTHoaDon;
+
 public class CTHoaDonResource {
     private int maHD;
     private int maSP;
@@ -16,6 +18,13 @@ public class CTHoaDonResource {
         this.soLuong = soLuong;
         this.donGia = donGia;
         this.thanhTien = thanhTien;
+    }
+    public CTHoaDonResource(CTHoaDon cthd) {
+        this.maHD = cthd.getMaHD();
+        this.maSP = cthd.getMaSP();
+        this.soLuong = cthd.getSoLuong();
+        this.donGia = cthd.getDonGia();
+        this.thanhTien = cthd.getThanhTien();
     }
 
     public int getMaHD() {

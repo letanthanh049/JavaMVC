@@ -80,6 +80,7 @@ public class DlgTimKhach extends JDialog {
         btnChon.setPreferredSize(new Dimension(120, 40));
         btnThemKhach.setPreferredSize(btnChon.getPreferredSize());
 
+        khachHangController.docDanhSach();
         loadDataLenTable();
     }
 

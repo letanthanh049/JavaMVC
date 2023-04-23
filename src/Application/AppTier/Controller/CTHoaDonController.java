@@ -3,11 +3,13 @@ package Application.AppTier.Controller;
 import Application.CodeTier.BL.CTHoaDonService;
 import Application.AppTier.Model.CTHoaDon;
 import Application.AppTier.Model.HoaDon;
+import Application.AppTier.Resource.CTHoaDonResource;
 
 import java.util.ArrayList;
 
 public class CTHoaDonController {
 
+    private ArrayList<CTHoaDonResource> listCTHoaDonView=new ArrayList();
     private ArrayList<CTHoaDon> listCTHoaDon;
     private CTHoaDonService ctHDDA = new CTHoaDonService();
     private HoaDonController hdBUS = new HoaDonController();
@@ -18,17 +20,22 @@ public class CTHoaDonController {
 
     public void docListCTHoaDon() {
         this.listCTHoaDon = ctHDDA.getListCTHoaDon();
+        this.listCTHoaDonView.clear();
+        for (CTHoaDon cthd : listCTHoaDon) 
+            this.listCTHoaDonView.add(new CTHoaDonResource(cthd));
     }
 
-    public ArrayList<CTHoaDon> getListCTHoaDon() {
-        return listCTHoaDon;
+    public ArrayList<CTHoaDonResource> getListCTHoaDon() {
+        if (this.listCTHoaDonView == null)
+            docListCTHoaDon();
+        return listCTHoaDonView;
     }
 
-    public ArrayList<CTHoaDon> getListCTHoaDonTheoMaHD(String maHD) {
+    public ArrayList<CTHoaDonResource> getListCTHoaDonTheoMaHD(String maHD) {
         int ma = Integer.parseInt(maHD);
-        ArrayList<CTHoaDon> dsct = new ArrayList<>();
+        ArrayList<CTHoaDonResource> dsct = new ArrayList<>();
 
-        for (CTHoaDon cthd : listCTHoaDon) {
+        for (CTHoaDonResource cthd : listCTHoaDonView) {
             if (cthd.getMaHD() == ma)
                 dsct.add(cthd);
         }

@@ -1,5 +1,7 @@
 package Application.AppTier.Resource;
 
+import Application.AppTier.Model.LoaiSP;
+
 public class LoaiSPResource {
 
     private int maLoai;
@@ -11,6 +13,11 @@ public class LoaiSPResource {
     public LoaiSPResource(int maLoai, String tenLoai) {
         this.maLoai = maLoai;
         this.tenLoai = tenLoai;
+    }
+    
+     public LoaiSPResource(LoaiSP lsp) {
+        this.maLoai = lsp.getMaLoai();
+        this.tenLoai = lsp.getTenLoai();
     }
 
     public int getMaLoai() {

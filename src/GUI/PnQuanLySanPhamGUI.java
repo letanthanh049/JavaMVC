@@ -4,6 +4,7 @@ import Application.AppTier.Controller.LoaiController;
 import Application.AppTier.Controller.SanPhamController;
 import Application.AppTier.Model.LoaiSP;
 import Application.AppTier.Model.SanPham;
+import Application.AppTier.Resource.LoaiSPResource;
 import Application.AppTier.Resource.SanPhamResource;
 
 import static Main.Main.changLNF;
@@ -450,9 +451,9 @@ public class PnQuanLySanPhamGUI extends JPanel {
     private void loadDataCmbLoai() {
         cmbLoai.removeAllItems();
 
-        ArrayList<LoaiSP> dsl = loaiController.getDanhSachLoai();
+        ArrayList<LoaiSPResource> dsl = loaiController.getDanhSachLoai();
         cmbLoai.addItem("0 - Chọn loại");
-        for (LoaiSP loai : dsl) {
+        for (LoaiSPResource loai : dsl) {
             cmbLoai.addItem(loai.getMaLoai() + " - " + loai.getTenLoai());
         }
         cmbLoai.addItem("Khác...");

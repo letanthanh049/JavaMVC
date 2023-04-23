@@ -1,5 +1,6 @@
 package Application.AppTier.Resource;
 
+import Application.AppTier.Model.HoaDon;
 import java.util.Date;
 
 public class HoaDonResource {
@@ -20,6 +21,15 @@ public class HoaDonResource {
         this.ngayLap = ngayLap;
         this.tongTien = tongTien;
         this.ghiChu = ghiChu;
+    }
+    
+    public HoaDonResource(HoaDon hd) {
+        this.maHD = hd.getMaHD();
+        this.maKH = hd.getMaKH();
+        this.maNV = hd.getMaNV();
+        this.ngayLap = hd.getNgayLap();
+        this.tongTien = hd.getTongTien();
+        this.ghiChu = hd.getGhiChu();
     }
 
     public int getMaHD() {

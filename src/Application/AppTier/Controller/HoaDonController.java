@@ -2,6 +2,7 @@ package Application.AppTier.Controller;
 
 import Application.CodeTier.BL.HoaDonService;
 import Application.AppTier.Model.HoaDon;
+import Application.AppTier.Resource.HoaDonResource;
 import MyCustom.MyDialog;
 
 import java.text.SimpleDateFormat;
@@ -10,12 +11,16 @@ import java.util.Date;
 
 public class HoaDonController {
 
+    private ArrayList<HoaDonResource> listHoaDonView= new ArrayList();
     private ArrayList<HoaDon> listHoaDon;
     private HoaDonService hoaDonDA = new HoaDonService();
 
-    public ArrayList<HoaDon> getListHoaDon() {
+    public ArrayList<HoaDonResource> getListHoaDon() {
         listHoaDon = hoaDonDA.getListHoaDon();
-        return listHoaDon;
+        this.listHoaDonView.clear();
+        for (HoaDon hd : listHoaDon) 
+            this.listHoaDonView.add(new HoaDonResource(hd));
+        return listHoaDonView;
     }
 
     public void luuHoaDon(int maKH, String nhanVien, int tongTien, String ghiChu) {
@@ -34,21 +39,21 @@ public class HoaDonController {
         return hoaDonDA.getMaHoaDonMoiNhat();
     }
 
-    public HoaDon getHoaDon(String maHD) {
+    public HoaDonResource getHoaDon(String maHD) {
         int ma = Integer.parseInt(maHD);
-        for (HoaDon hd : listHoaDon) {
+        for (HoaDonResource hd : listHoaDonView) {
             if (hd.getMaHD() == ma)
                 return hd;
         }
         return null;
     }
 
-    public ArrayList<HoaDon> getListHoaDonTheoGia(String min, String max) {
+    public ArrayList<HoaDonResource> getListHoaDonTheoGia(String min, String max) {
         try {
             int minPrice = Integer.parseInt(min);
             int maxPrice = Integer.parseInt(max);
-            ArrayList<HoaDon> dshd = new ArrayList<>();
-            for (HoaDon hd : listHoaDon) {
+            ArrayList<HoaDonResource> dshd = new ArrayList<>();
+            for (HoaDonResource hd : listHoaDonView) {
                 if (hd.getTongTien() > minPrice && hd.getTongTien() < maxPrice)
                     dshd.add(hd);
             }
@@ -59,7 +64,7 @@ public class HoaDonController {
         return null;
     }
 
-    public ArrayList<HoaDon> getListHoaDonTheoNgay(String min, String max) {
+    public ArrayList<HoaDonResource> getListHoaDonTheoNgay(String min, String max) {
         try {
             SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
             Date minDate = sdf.parse(min);
@@ -68,7 +73,10 @@ public class HoaDonController {
             java.sql.Date dateMin = new java.sql.Date(minDate.getTime());
             java.sql.Date dateMax = new java.sql.Date(maxDate.getTime());
 
-            ArrayList<HoaDon> dshd = hoaDonDA.getListHoaDon(dateMin, dateMax);
+            ArrayList<HoaDonResource> dshd = new ArrayList();
+            listHoaDon = hoaDonDA.getListHoaDon(dateMin, dateMax);
+            for (HoaDon hd : listHoaDon) 
+            dshd.add(new HoaDonResource(hd));
             return dshd;
         } catch (Exception e) {
             new MyDialog("Hãy nhập khoảng ngày hợp lệ!", MyDialog.ERROR_DIALOG);

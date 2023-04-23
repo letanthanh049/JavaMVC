@@ -10,6 +10,9 @@ import Application.AppTier.Model.LoaiSP;
 import Application.AppTier.Model.HoaDon;
 import Application.AppTier.Model.SanPham;
 import Application.AppTier.Model.CTHoaDon;
+import Application.AppTier.Resource.CTHoaDonResource;
+import Application.AppTier.Resource.HoaDonResource;
+import Application.AppTier.Resource.LoaiSPResource;
 import Application.AppTier.Resource.NhanVienResource;
 import Application.AppTier.Resource.SanPhamResource;
 
@@ -849,6 +852,11 @@ public class PnQuanLyBanHangGUI extends JPanel {
         btnResetCTHoaDon.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                txtMaHDCT.setText("");
+                txtMaSPCT.setText("");
+                txtSoLuongCT.setText("");
+                txtDonGiaCT.setText("");
+                txtThanhTienCT.setText("");
                 loadDataTblCTHoaDon();
             }
         });
@@ -856,6 +864,12 @@ public class PnQuanLyBanHangGUI extends JPanel {
         btnResetHoaDon.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                txtMaHD.setText("");
+                txtMaKH.setText("");
+                txtMaNV.setText("");
+                txtNgayLap.setText("");
+                txtTongTien.setText("");
+                txtGhiChu.setText("");
                 loadDataListHoaDon();
                 loadDataTblCTHoaDon();
             }
@@ -893,8 +907,8 @@ public class PnQuanLyBanHangGUI extends JPanel {
     private void loadDataComboboxLoaiBanSP() {
         cmbLoaiSPBanHang.removeAllItems();
         cmbLoaiSPBanHang.addItem("0 - Chọn loại");
-        ArrayList<LoaiSP> dsl = loaiController.getDanhSachLoai();
-        for (LoaiSP loai : dsl) {
+        ArrayList<LoaiSPResource> dsl = loaiController.getDanhSachLoai();
+        for (LoaiSPResource loai : dsl) {
             if (!loai.getTenLoai().equalsIgnoreCase("Nguyên liệu")) {
                 cmbLoaiSPBanHang.addItem(loai.getMaLoai() + " - " + loai.getTenLoai());
             }
@@ -1149,14 +1163,14 @@ public class PnQuanLyBanHangGUI extends JPanel {
     }
 
     private void loadDataListHoaDon() {
-        ArrayList<HoaDon> dshd = hoaDonController.getListHoaDon();
+        ArrayList<HoaDonResource> dshd = hoaDonController.getListHoaDon();
         addDataListHoaDon(dshd);
     }
 
-    private void addDataListHoaDon(ArrayList<HoaDon> dshd) {
+    private void addDataListHoaDon(ArrayList<HoaDonResource> dshd) {
         DefaultListModel<String> listModel = new DefaultListModel<>();
         if (dshd != null) {
-            for (HoaDon hd : dshd) {
+            for (HoaDonResource hd : dshd) {
                 listModel.addElement(hd.getMaHD() + " | " + hd.getNgayLap() + " === " + dcf.format(hd.getTongTien()) + " VND");
             }
             listHoaDon.setModel(listModel);
@@ -1169,7 +1183,7 @@ public class PnQuanLyBanHangGUI extends JPanel {
         String hoaDon = listHoaDon.getSelectedValue();
         String[] stMaHD = hoaDon.split(" | ");
 
-        HoaDon hd = hoaDonController.getHoaDon(stMaHD[0]);
+        HoaDonResource hd = hoaDonController.getHoaDon(stMaHD[0]);
         txtMaHD.setText(hd.getMaHD() + "");
         txtMaKH.setText(hd.getMaKH() + "");
         txtMaNV.setText(hd.getMaNV() + "");
@@ -1186,13 +1200,13 @@ public class PnQuanLyBanHangGUI extends JPanel {
 
     private void loadDataTblCTHoaDon() {
         ctHDController.docListCTHoaDon();
-        ArrayList<CTHoaDon> listCTHoaDon = ctHDController.getListCTHoaDon();
-        addDataTableCTHoaDon(listCTHoaDon);
+        ArrayList<CTHoaDonResource> listCTHoaDonView = ctHDController.getListCTHoaDon();
+        addDataTableCTHoaDon(listCTHoaDonView);
     }
 
-    private void addDataTableCTHoaDon(ArrayList<CTHoaDon> listCTHoaDon) {
+    private void addDataTableCTHoaDon(ArrayList<CTHoaDonResource> listCTHoaDonView) {
         dtmCTHoaDon.setRowCount(0);
-        for (CTHoaDon ct : listCTHoaDon) {
+        for (CTHoaDonResource ct : listCTHoaDonView) {
             Vector<String> vec = new Vector<>();
             vec.add(ct.getMaHD() + "");
             vec.add(ct.getMaSP() + "");
@@ -1204,9 +1218,9 @@ public class PnQuanLyBanHangGUI extends JPanel {
     }
 
     private void loadDataTblCTHoaDon(String maHD) {
-        ArrayList<CTHoaDon> listCTHoaDon = ctHDController.getListCTHoaDonTheoMaHD(maHD);
+        ArrayList<CTHoaDonResource> listCTHoaDonView = ctHDController.getListCTHoaDonTheoMaHD(maHD);
 
-        addDataTableCTHoaDon(listCTHoaDon);
+        addDataTableCTHoaDon(listCTHoaDonView);
     }
 
     private void xuLyClickTblCTHoaDon() {
@@ -1234,12 +1248,13 @@ public class PnQuanLyBanHangGUI extends JPanel {
 
 
     private void xuLyTimTheoKhoangNgay() {
-        ArrayList<HoaDon> listHoaDon = hoaDonController.getListHoaDonTheoNgay(txtMinNgayLap.getText(), txtMaxNgayLap.getText());
-        addDataListHoaDon(listHoaDon);
+        ArrayList<HoaDonResource> listHoaDonView = hoaDonController.getListHoaDonTheoNgay(txtMinNgayLap.getText(), txtMaxNgayLap.getText());
+        addDataListHoaDon(listHoaDonView);
     }
 
     private void xuLyTimTheoKhoangGia() {
-        ArrayList<HoaDon> listHoaDon = hoaDonController.getListHoaDonTheoGia(txtMinSearch.getText(), txtMaxSearch.getText());
-        addDataListHoaDon(listHoaDon);
+        ArrayList<HoaDonResource> listHoaDonView = hoaDonController.getListHoaDonTheoGia(txtMinSearch.getText(), txtMaxSearch.getText());
+        addDataListHoaDon(listHoaDonView
+        );
     }
 }
