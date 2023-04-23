@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class CTPhieuNhapController {
 
     private ArrayList<CTPhieuNhap> listPhieuNhap = null;
-    private CTPhieuNhapService ctPhieuNhapDA = new CTPhieuNhapService();
+    private CTPhieuNhapService ctPhieuNhapService = new CTPhieuNhapService();
     private ArrayList<CTPhieuNhapResource> CTlistPhieuNhapView = new ArrayList();
 
     public CTPhieuNhapController() {
@@ -16,14 +16,16 @@ public class CTPhieuNhapController {
     }
 
     public void docDanhSach() {
-        this.listPhieuNhap = ctPhieuNhapDA.getListCTPhieuNhap();
+        this.listPhieuNhap = ctPhieuNhapService.getListCTPhieuNhap();
         this.CTlistPhieuNhapView.clear();
         for (CTPhieuNhap ctpn : listPhieuNhap) 
             this.CTlistPhieuNhapView.add(new CTPhieuNhapResource(ctpn));
     }
 
     public ArrayList<CTPhieuNhapResource> getListPhieuNhap() {
+//        if (CTlistPhieuNhapView == null) {
             docDanhSach();
+//        }
         return CTlistPhieuNhapView;
     }
     
@@ -41,6 +43,6 @@ public class CTPhieuNhapController {
     }
 
     public boolean luuCTPhieuNhap(CTPhieuNhap ctpn) {
-        return ctPhieuNhapDA.addCTPhieuNhap(ctpn);
+        return ctPhieuNhapService.addCTPhieuNhap(ctpn);
     }
 }
