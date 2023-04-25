@@ -2,7 +2,7 @@ package GUI;
 
 import Application.AppTier.Controller.PhanQuyenController;
 import Application.AppTier.Controller.TaiKhoanController;
-import Application.AppTier.Model.PhanQuyen;
+import Application.AppTier.Resource.PhanQuyenResource;
 import MyCustom.MyDialog;
 import java.awt.Image;
 import java.awt.Toolkit;
@@ -42,8 +42,8 @@ public class DlgQuyen_MatKhau extends javax.swing.JDialog {
 
         cmbQuyen.removeAllItems();
         phanQuyenController.docDanhSachQuyen();
-        ArrayList<PhanQuyen> dsq = phanQuyenController.getListQuyen();
-        for (PhanQuyen pq : dsq) {
+        ArrayList<PhanQuyenResource> dsq = phanQuyenController.getListQuyen();
+        for (PhanQuyenResource pq : dsq) {
             cmbQuyen.addItem(pq.getQuyen());
         }
 

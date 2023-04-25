@@ -45,4 +45,8 @@ public class SanPhamService {
     public boolean suaSanPham(SanPham sp) {
         return spDA.suaSanPham(sp);
     }
+    
+    public boolean xoaToanBoSanPham() {
+        return spDA.xoaToanBoSanPham();
+    }
 }

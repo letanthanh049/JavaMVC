@@ -13,6 +13,14 @@ public class NhanVienResource {
     public NhanVienResource() {
     }
 
+    public NhanVienResource(int maNV, String ho, String ten, String gioiTinh, String chucVu) {
+        this.maNV = maNV;
+        this.ho = ho;
+        this.ten = ten;
+        this.gioiTinh = gioiTinh;
+        this.chucVu = chucVu;
+    }
+
     public NhanVienResource(NhanVien nv) {
         this.maNV = nv.getMaNV();
         this.ho = nv.getHo();

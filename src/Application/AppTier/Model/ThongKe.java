@@ -9,8 +9,6 @@ public class ThongKe {
     public int soLuongNV;
     public int[] tongThuQuy;
     public ArrayList<SanPham> topSanPhamBanChay;
-    private Timestamp createdAt;
-    private Timestamp updatedAt;
 
     public ThongKe() {
     }
@@ -74,21 +72,5 @@ public class ThongKe {
     public void setTopSanPhamBanChay(ArrayList<SanPham> topSanPhamBanChay) {
         this.topSanPhamBanChay = topSanPhamBanChay;
     }
-
-    public Timestamp getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(Timestamp createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public Timestamp getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(Timestamp updatedAt) {
-        this.updatedAt = updatedAt;
-    }
-      
+    
 }

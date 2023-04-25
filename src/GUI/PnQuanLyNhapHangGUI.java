@@ -13,6 +13,7 @@ import Application.AppTier.Resource.SanPhamResource;
 
 import MyCustom.MyDialog;
 import MyCustom.MyTable;
+import java.sql.Timestamp;
 
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
@@ -1029,12 +1030,15 @@ public class PnQuanLyNhapHangGUI extends javax.swing.JPanel {
         }
 
         ArrayList<CTPhieuNhap> dsct = new ArrayList<>();
+        long currentSystemTime = System.currentTimeMillis();
+        Timestamp currentTime = new Timestamp(0);
+        currentTime.setTime(currentSystemTime);
         for (int i = 0; i < row; i++) {
             int maSP = Integer.parseInt(tblGioNhap.getValueAt(i, 0) + "");
             int soLuong = Integer.parseInt(tblGioNhap.getValueAt(i, 2) + "");
             int donGia = Integer.parseInt(tblGioNhap.getValueAt(i, 3) + "");
             int thanhTien = Integer.parseInt(tblGioNhap.getValueAt(i, 4) + "");
-            CTPhieuNhap ctpn = new CTPhieuNhap(0, maSP, soLuong, donGia, thanhTien);
+            CTPhieuNhap ctpn = new CTPhieuNhap(0, maSP, soLuong, donGia, thanhTien, currentTime, currentTime);
             dsct.add(ctpn);
         }
         XuatPhieuNhapGUI xuatPhieuNhap = new XuatPhieuNhapGUI(nhaCungCap, nhanVien, dsct);

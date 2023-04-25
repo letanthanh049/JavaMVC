@@ -34,13 +34,15 @@ public class PhieuNhapDA {
     public boolean themPhieuNhap(PhieuNhap pn) {
         boolean result = false;
         try {
-            String sql = "INSERT INTO phieunhap(MaNCC, MaNV, NgayLap, TongTien) "
-                    + "VALUES(?,?,?,?)";
+            String sql = "INSERT INTO phieunhap(MaNCC, MaNV, NgayLap, TongTien, CreatedAt, UpdatedAt) "
+                    + "VALUES(?,?,?,?,?,?)";
             PreparedStatement prep = MyConnect.conn.prepareStatement(sql);
             prep.setInt(1, pn.getMaNCC());
             prep.setInt(2, pn.getMaNV());
             prep.setTimestamp(3, new java.sql.Timestamp(new java.util.Date().getTime()));
             prep.setInt(4, pn.getTongTien());
+            prep.setTimestamp(5, pn.getCreatedAt());
+            prep.setTimestamp(6, pn.getUpdatedAt());
             result = prep.executeUpdate() > 0;
         } catch (SQLException ex) {
             return false;
@@ -83,7 +85,7 @@ public class PhieuNhapDA {
     public boolean updatePhieuNhap(int maPN, PhieuNhap pn) {
         boolean result = false;
         try {
-            String sql = "UPDATE phieunhap SET MaPN=?, MaNCC=?, MaNV=?, NgayLap=?, TongTien=? "
+            String sql = "UPDATE phieunhap SET MaPN=?, MaNCC=?, MaNV=?, NgayLap=?, TongTien=?, CreatedAt=? "
                     + "WHERE MaPN=" + maPN;
             PreparedStatement prep = MyConnect.conn.prepareStatement(sql);
             prep.setInt(1, pn.getMaPN());
@@ -91,6 +93,7 @@ public class PhieuNhapDA {
             prep.setInt(3, pn.getMaNV());
             prep.setDate(4, new java.sql.Date(pn.getNgayLap().getTime()));
             prep.setInt(5, pn.getTongTien());
+            prep.setTimestamp(6, pn.getUpdatedAt());
             result = prep.executeUpdate() > 0;
         } catch (SQLException ex) {
             return false;

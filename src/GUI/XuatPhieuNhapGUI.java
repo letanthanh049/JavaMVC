@@ -4,8 +4,6 @@ import Application.AppTier.Controller.CTPhieuNhapController;
 import Application.AppTier.Controller.PhieuNhapController;
 import Application.AppTier.Controller.SanPhamController;
 import Application.AppTier.Model.CTPhieuNhap;
-import Application.AppTier.Model.SanPham;
-import Application.AppTier.Resource.CTPhieuNhapResource;
 import Application.AppTier.Resource.SanPhamResource;
 import MyCustom.MyDialog;
 import java.awt.print.PrinterException;

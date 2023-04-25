@@ -19,6 +19,7 @@ public class CTHoaDonResource {
         this.donGia = donGia;
         this.thanhTien = thanhTien;
     }
+    
     public CTHoaDonResource(CTHoaDon cthd) {
         this.maHD = cthd.getMaHD();
         this.maSP = cthd.getMaSP();

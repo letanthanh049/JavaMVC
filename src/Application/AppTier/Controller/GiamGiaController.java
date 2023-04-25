@@ -4,6 +4,7 @@ import Application.CodeTier.BL.GiamGiaService;
 import Application.AppTier.Model.GiamGia;
 import Application.AppTier.Resource.GiamGiaResource;
 import MyCustom.MyDialog;
+import java.sql.Timestamp;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -11,7 +12,7 @@ import java.util.Date;
 public class GiamGiaController {
 
     private ArrayList<GiamGia> listGiamGia = null;
-    private GiamGiaService giamGiaDA = new GiamGiaService();
+    private GiamGiaService giamGiaService = new GiamGiaService();
     private ArrayList<GiamGiaResource> listGiamGiaView = new ArrayList();
 
     public GiamGiaController() {
@@ -19,7 +20,7 @@ public class GiamGiaController {
     }
 
     public void docDanhSach() {
-        this.listGiamGia = giamGiaDA.getDanhSachMaGiam();
+        this.listGiamGia = giamGiaService.getDanhSachMaGiam();
         this.listGiamGiaView.clear();
         for (GiamGia gg : listGiamGia) 
             this.listGiamGiaView.add(new GiamGiaResource(gg));
@@ -47,6 +48,9 @@ public class GiamGiaController {
         try {
             int phanTramGiam = Integer.parseInt(phanTram);
             int dieuKienGiam = Integer.parseInt(dieuKien);
+            long currentSystemTime = System.currentTimeMillis();
+            Timestamp currentTime = new Timestamp(0);
+            currentTime.setTime(currentSystemTime);
 
             GiamGia gg = new GiamGia();
             gg.setTenGiamGia(ten);
@@ -54,8 +58,10 @@ public class GiamGiaController {
             gg.setDieuKien(dieuKienGiam);
             gg.setNgayBD(ngayBD);
             gg.setNgayKT(ngayKT);
+            gg.setCreatedAt(currentTime);
+            gg.setUpdatedAt(currentTime);
 
-            flag = giamGiaDA.themMaGiam(gg);
+            flag = giamGiaService.themMaGiam(gg);
         } catch (Exception e) {
             new MyDialog("Hãy nhập số nguyên hợp lệ!", MyDialog.ERROR_DIALOG);
             return false;
@@ -85,6 +91,9 @@ public class GiamGiaController {
             return false;
         }
         boolean flag = false;
+        long currentSystemTime = System.currentTimeMillis();
+        Timestamp currentTime = new Timestamp(0);
+        currentTime.setTime(currentSystemTime);
         try {
             int maGiam = Integer.parseInt(ma);
             int phanTramGiam = Integer.parseInt(phanTram);
@@ -97,8 +106,9 @@ public class GiamGiaController {
             gg.setDieuKien(dieuKienGiam);
             gg.setNgayBD(ngayBD);
             gg.setNgayKT(ngayKT);
+            gg.setUpdatedAt(currentTime);
 
-            flag = giamGiaDA.suaMaGiam(gg);
+            flag = giamGiaService.suaMaGiam(gg);
         } catch (Exception e) {
             new MyDialog("Hãy nhập số nguyên hợp lệ!", MyDialog.ERROR_DIALOG);
             return false;

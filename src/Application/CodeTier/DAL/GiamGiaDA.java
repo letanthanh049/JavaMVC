@@ -25,6 +25,8 @@ public class GiamGiaDA {
                 gg.setDieuKien(rs.getInt(4));
                 gg.setNgayBD(rs.getDate(5));
                 gg.setNgayKT(rs.getDate(6));
+                gg.setCreatedAt(rs.getTimestamp(7));
+                gg.setUpdatedAt(rs.getTimestamp(8));
                 dsgg.add(gg);
             }
             return dsgg;
@@ -35,8 +37,8 @@ public class GiamGiaDA {
 
     public boolean themMaGiam(GiamGia gg) {
         try {
-            String sql = "INSERT INTO giamgia(TenGiamGia, PhanTramGiam, DieuKien, NgayBD, NgayKT) " +
-                    "VALUES (?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO giamgia(TenGiamGia, PhanTramGiam, DieuKien, NgayBD, NgayKT, CreatedAt, UpdatedAt) " +
+                    "VALUES (?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement pre = MyConnect.conn.prepareStatement(sql);
             pre.setString(1, gg.getTenGiamGia());
             pre.setInt(2, gg.getPhanTramGiam());
@@ -44,6 +46,8 @@ public class GiamGiaDA {
 
             pre.setTimestamp(4, new java.sql.Timestamp(gg.getNgayBD().getTime()));
             pre.setTimestamp(5, new java.sql.Timestamp(gg.getNgayKT().getTime()));
+            pre.setTimestamp(6, gg.getCreatedAt());
+            pre.setTimestamp(7, gg.getUpdatedAt());
 
             return pre.executeUpdate() > 0;
         } catch (Exception e) {
@@ -53,7 +57,7 @@ public class GiamGiaDA {
 
     public boolean suaMaGiam(GiamGia gg) {
         try {
-            String sql = "UPDATE giamgia SET TenGiamGia=?, PhanTramGiam=?, DieuKien=?, NgayBD=?, NgayKT=? WHERE MaGiam=?";
+            String sql = "UPDATE giamgia SET TenGiamGia=?, PhanTramGiam=?, DieuKien=?, NgayBD=?, NgayKT=?, UpdatedAt=? WHERE MaGiam=?";
             PreparedStatement pre = MyConnect.conn.prepareStatement(sql);
             pre.setString(1, gg.getTenGiamGia());
             pre.setInt(2, gg.getPhanTramGiam());
@@ -61,8 +65,9 @@ public class GiamGiaDA {
 
             pre.setTimestamp(4, new java.sql.Timestamp(gg.getNgayBD().getTime()));
             pre.setTimestamp(5, new java.sql.Timestamp(gg.getNgayKT().getTime()));
+            pre.setTimestamp(6, gg.getUpdatedAt());
 
-            pre.setInt(6, gg.getMaGiam());
+            pre.setInt(7, gg.getMaGiam());
             return pre.executeUpdate() > 0;
         } catch (Exception e) {
             e.printStackTrace();

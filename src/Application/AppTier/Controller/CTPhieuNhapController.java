@@ -3,37 +3,38 @@ package Application.AppTier.Controller;
 import Application.AppTier.Model.CTPhieuNhap;
 import Application.AppTier.Resource.CTPhieuNhapResource;
 import Application.CodeTier.BL.CTPhieuNhapService;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 
 public class CTPhieuNhapController {
 
-    private ArrayList<CTPhieuNhap> listPhieuNhap = null;
+    private ArrayList<CTPhieuNhap> listCTPhieuNhap = null;
     private CTPhieuNhapService ctPhieuNhapService = new CTPhieuNhapService();
-    private ArrayList<CTPhieuNhapResource> CTlistPhieuNhapView = new ArrayList();
+    private ArrayList<CTPhieuNhapResource> listCTPhieuNhapView = new ArrayList();
 
     public CTPhieuNhapController() {
         docDanhSach();
     }
 
     public void docDanhSach() {
-        this.listPhieuNhap = ctPhieuNhapService.getListCTPhieuNhap();
-        this.CTlistPhieuNhapView.clear();
-        for (CTPhieuNhap ctpn : listPhieuNhap) 
-            this.CTlistPhieuNhapView.add(new CTPhieuNhapResource(ctpn));
+        this.listCTPhieuNhap = ctPhieuNhapService.getListCTPhieuNhap();
+        this.listCTPhieuNhapView.clear();
+        for (CTPhieuNhap ctpn : listCTPhieuNhap) 
+            this.listCTPhieuNhapView.add(new CTPhieuNhapResource(ctpn));
     }
 
     public ArrayList<CTPhieuNhapResource> getListPhieuNhap() {
-//        if (CTlistPhieuNhapView == null) {
+//        if (listCTPhieuNhapView == null) {
             docDanhSach();
 //        }
-        return CTlistPhieuNhapView;
+        return listCTPhieuNhapView;
     }
     
     public ArrayList<CTPhieuNhapResource> getListPhieuNhap(String maPN) {
         ArrayList<CTPhieuNhapResource> dsct = new ArrayList<>();
         int ma = Integer.parseInt(maPN);
         
-        for(CTPhieuNhapResource ctpn : CTlistPhieuNhapView) {
+        for(CTPhieuNhapResource ctpn : listCTPhieuNhapView) {
             if(ctpn.getMaPN() == ma) {
                 dsct.add(ctpn);
             }
@@ -43,6 +44,11 @@ public class CTPhieuNhapController {
     }
 
     public boolean luuCTPhieuNhap(CTPhieuNhap ctpn) {
+        long currentSystemTime = System.currentTimeMillis();
+        Timestamp currentTime = new Timestamp(0);
+        currentTime.setTime(currentSystemTime);
+        ctpn.setCreatedAt(currentTime);
+        ctpn.setUpdatedAt(currentTime);
         return ctPhieuNhapService.addCTPhieuNhap(ctpn);
     }
 }

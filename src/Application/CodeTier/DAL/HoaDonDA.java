@@ -32,19 +32,27 @@ public class HoaDonDA {
     public boolean addHoaDon(HoaDon hd) {
         boolean result = false;
         try {
-            String sql1 = "UPDATE KhachHang SET TongChiTieu=TongChiTieu+" + hd.getTongTien() + " WHERE MaKH=" + hd.getMaKH();
-            Statement st = MyConnect.conn.createStatement();
-            st.executeUpdate(sql1);
-            String sql = "INSERT INTO hoadon(MaKH, MaNV, NgayLap, TongTien, GhiChu) VALUES(?, ?, ?, ?, ?)";
+            String sql1 = "UPDATE KhachHang SET TongChiTieu=TongChiTieu + ?, UpdatedAt=? WHERE MaKH=?";
+            PreparedStatement prep1 = MyConnect.conn.prepareStatement(sql1);
+            prep1.setInt(1, hd.getTongTien());
+            prep1.setTimestamp(2, hd.getUpdatedAt());
+            prep1.setInt(3, hd.getMaKH());
+            prep1.executeUpdate();
+            
+            String sql = "INSERT INTO hoadon(MaKH, MaNV, NgayLap, TongTien, GhiChu, CreatedAt, UpdatedAt) VALUES(?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement prep = MyConnect.conn.prepareStatement(sql);
             prep.setInt(1, hd.getMaKH());
             prep.setInt(2, hd.getMaNV());
             prep.setTimestamp(3, new java.sql.Timestamp(new java.util.Date().getTime()));
             prep.setInt(4, hd.getTongTien());
             prep.setString(5, hd.getGhiChu());
+            prep.setTimestamp(6, hd.getCreatedAt());
+            prep.setTimestamp(7, hd.getUpdatedAt());
             result = prep.executeUpdate() > 0;
         } catch (SQLException ex) {
-            ex.printStackTrace();
+            String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
+            System.out.println("Error occurred in method: " + methodName);
+            System.out.println(ex);
             return false;
         }
         return result;

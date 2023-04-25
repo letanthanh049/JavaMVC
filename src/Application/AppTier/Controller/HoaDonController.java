@@ -4,6 +4,7 @@ import Application.CodeTier.BL.HoaDonService;
 import Application.AppTier.Model.HoaDon;
 import Application.AppTier.Resource.HoaDonResource;
 import MyCustom.MyDialog;
+import java.sql.Timestamp;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -13,10 +14,10 @@ public class HoaDonController {
 
     private ArrayList<HoaDonResource> listHoaDonView= new ArrayList();
     private ArrayList<HoaDon> listHoaDon;
-    private HoaDonService hoaDonDA = new HoaDonService();
+    private HoaDonService hdService = new HoaDonService();
 
     public ArrayList<HoaDonResource> getListHoaDon() {
-        listHoaDon = hoaDonDA.getListHoaDon();
+        listHoaDon = hdService.getListHoaDon();
         this.listHoaDonView.clear();
         for (HoaDon hd : listHoaDon) 
             this.listHoaDonView.add(new HoaDonResource(hd));
@@ -24,19 +25,26 @@ public class HoaDonController {
     }
 
     public void luuHoaDon(int maKH, String nhanVien, int tongTien, String ghiChu) {
+        long currentSystemTime = System.currentTimeMillis();
+        Timestamp currentTime = new Timestamp(0);
+        currentTime.setTime(currentSystemTime);
+        
         HoaDon hd = new HoaDon();
         String[] arrNV = nhanVien.split(" - ");
         int maNV = Integer.parseInt(arrNV[0]);
+        
         hd.setMaNV(maNV);
         hd.setMaKH(maKH);
         hd.setGhiChu(ghiChu);
         hd.setTongTien(tongTien);
+        hd.setCreatedAt(currentTime);
+        hd.setUpdatedAt(currentTime);
 
-        hoaDonDA.addHoaDon(hd);
+        hdService.addHoaDon(hd);
     }
 
     public int getMaHoaDonMoiNhat() {
-        return hoaDonDA.getMaHoaDonMoiNhat();
+        return hdService.getMaHoaDonMoiNhat();
     }
 
     public HoaDonResource getHoaDon(String maHD) {
@@ -74,7 +82,7 @@ public class HoaDonController {
             java.sql.Date dateMax = new java.sql.Date(maxDate.getTime());
 
             ArrayList<HoaDonResource> dshd = new ArrayList();
-            listHoaDon = hoaDonDA.getListHoaDon(dateMin, dateMax);
+            listHoaDon = hdService.getListHoaDon(dateMin, dateMax);
             for (HoaDon hd : listHoaDon) 
             dshd.add(new HoaDonResource(hd));
             return dshd;

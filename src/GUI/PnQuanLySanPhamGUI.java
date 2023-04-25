@@ -367,7 +367,7 @@ public class PnQuanLySanPhamGUI extends JPanel {
     }
 
     private void xuLyNhapFileExcel() {
-        MyDialog dlg = new MyDialog("Dữ liệu cũ sẽ bị xoá, tiếp tục?", MyDialog.WARNING_DIALOG);
+        MyDialog dlg = new MyDialog("Dữ liệu sản phẩm và chi tiết các hóa đơn cũ sẽ bị xóa toàn bộ, tiếp tục?", MyDialog.WARNING_DIALOG);
         if (dlg.getAction() != MyDialog.OK_OPTION) {
             return;
         }
@@ -376,6 +376,7 @@ public class PnQuanLySanPhamGUI extends JPanel {
         nhapFile.nhapExcel(tblSanPham);
 
         int row = tblSanPham.getRowCount();
+        spController.xoaToanBoSanPham();
         for (int i = 0; i < row; i++) {
             String ten = tblSanPham.getValueAt(i, 1) + "";
             String loai = tblSanPham.getValueAt(i, 2) + "";
@@ -386,6 +387,7 @@ public class PnQuanLySanPhamGUI extends JPanel {
 
             spController.nhapSanPhamTuExcel(ten, loai, soLuong, donViTinh, anh, donGia);
         }
+        loadDataLenBangSanPham();
     }
 
     private void xuLyXuatFileExcel() {

@@ -3,10 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/G:/Study/Language%20Programming/Java/Thuc%20hanh/QuanlyPizza/src/GUI/PnQuanLyNhapHangGUI.java</file>
-            <file>file:/G:/Study/Language%20Programming/Java/Thuc%20hanh/QuanlyPizza/src/Application/AppTier/Controller/CTPhieuNhapController.java</file>
-            <file>file:/G:/Study/Language%20Programming/Java/Thuc%20hanh/QuanlyPizza/src/Application/AppTier/Controller/CTHoaDonController.java</file>
-            <file>file:/G:/Study/Language%20Programming/Java/Thuc%20hanh/QuanlyPizza/src/Application/CodeTier/DAL/NhanVienDA.java</file>
+            <file>file:/G:/Study/Language%20Programming/Java/Thuc%20hanh/QuanlyPizza/src/Application/CodeTier/DAL/TaiKhoanDA.java</file>
+            <file>file:/G:/Study/Language%20Programming/Java/Thuc%20hanh/QuanlyPizza/src/Application/AppTier/Controller/SanPhamController.java</file>
+            <file>file:/G:/Study/Language%20Programming/Java/Thuc%20hanh/QuanlyPizza/src/GUI/PnQuanLyBanHangGUI.java</file>
+            <file>file:/G:/Study/Language%20Programming/Java/Thuc%20hanh/QuanlyPizza/src/Application/CodeTier/DAL/SanPhamDA.java</file>
         </group>
     </open-files>
 </project-private>

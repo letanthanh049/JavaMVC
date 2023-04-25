@@ -1,5 +1,7 @@
 package Application.AppTier.Resource;
 
+import Application.AppTier.Model.PhanQuyen;
+
 public class PhanQuyenResource {
 
     private String quyen;
@@ -19,6 +21,15 @@ public class PhanQuyenResource {
         this.qlNhanVien = qlNhanVien;
         this.qlKhachHang = qlKhachHang;
         this.thongKe = thongKe;
+    }
+    
+    public PhanQuyenResource(PhanQuyen pq) {
+        this.quyen = pq.getQuyen();
+        this.nhapHang = pq.getNhapHang();
+        this.qlSanPham = pq.getQlSanPham();
+        this.qlNhanVien = pq.getQlNhanVien();
+        this.qlKhachHang = pq.getQlKhachHang();
+        this.thongKe = pq.getThongKe();
     }
 
     public String getQuyen() {

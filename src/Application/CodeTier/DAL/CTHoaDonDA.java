@@ -24,6 +24,8 @@ public class CTHoaDonDA {
                 cthd.setSoLuong(rs.getInt(3));
                 cthd.setDonGia(rs.getInt(4));
                 cthd.setThanhTien(rs.getInt(5));
+                cthd.setCreatedAt(rs.getTimestamp(6));
+                cthd.setUpdatedAt(rs.getTimestamp(7));
                 dscthd.add(cthd);
             }
         } catch(SQLException ex) {
@@ -44,6 +46,8 @@ public class CTHoaDonDA {
                 cthd.setSoLuong(rs.getInt(3));
                 cthd.setDonGia(rs.getInt(4));
                 cthd.setThanhTien(rs.getInt(5));
+                cthd.setCreatedAt(rs.getTimestamp(6));
+                cthd.setUpdatedAt(rs.getTimestamp(7));
                 dscthd.add(cthd);
             }
         } catch(SQLException ex) {
@@ -65,6 +69,8 @@ public class CTHoaDonDA {
                 cthd.setSoLuong(rs.getInt(3));
                 cthd.setDonGia(rs.getInt(4));
                 cthd.setThanhTien(rs.getInt(5));
+                cthd.setCreatedAt(rs.getTimestamp(6));
+                cthd.setUpdatedAt(rs.getTimestamp(7));
                 dscthd.add(cthd);
             }
         } catch(SQLException ex) {
@@ -76,13 +82,15 @@ public class CTHoaDonDA {
     public boolean addCTHoaDon(CTHoaDon cthd) {
         boolean result = false;
         try {
-            String sql = "INSERT INTO cthoadon VALUES(?,?,?,?,?)";
+            String sql = "INSERT INTO cthoadon VALUES(?,?,?,?,?,?,?)";
             PreparedStatement prep = MyConnect.conn.prepareStatement(sql);
             prep.setInt(1, cthd.getMaHD());
             prep.setInt(2, cthd.getMaSP());
             prep.setInt(3, cthd.getSoLuong());
             prep.setInt(4, cthd.getDonGia());
             prep.setInt(5, cthd.getThanhTien());
+            prep.setTimestamp(6, cthd.getCreatedAt());
+            prep.setTimestamp(7, cthd.getUpdatedAt());
             result = prep.executeUpdate() > 0;
         } catch(SQLException ex) {
             ex.printStackTrace();
@@ -118,7 +126,7 @@ public class CTHoaDonDA {
     public boolean updateCTHoaDon(int maHD, int maSP, CTHoaDon cthd) {
         boolean result = false;
         try {
-            String sql = "UPDATE cthoadon SET MaHD=?, MaSP=?, SoLuong=?, DonGia=? ThanhTien=? "
+            String sql = "UPDATE cthoadon SET MaHD=?, MaSP=?, SoLuong=?, DonGia=?, ThanhTien=?, UpdatedAt=? "
                     + "WHERE MaHD=? AND MaSP=?";
             PreparedStatement prep = MyConnect.conn.prepareStatement(sql);
             prep.setInt(1, cthd.getMaHD());
@@ -126,8 +134,9 @@ public class CTHoaDonDA {
             prep.setInt(3, cthd.getSoLuong());
             prep.setInt(4, cthd.getDonGia());
             prep.setInt(5, cthd.getThanhTien());
-            prep.setInt(6, maHD);
-            prep.setInt(7, maSP);
+            prep.setTimestamp(6, cthd.getUpdatedAt());
+            prep.setInt(7, maHD);
+            prep.setInt(8, maSP);
             result = prep.executeUpdate() > 0;
         } catch(SQLException ex) {
             return false;

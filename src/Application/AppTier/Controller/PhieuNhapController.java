@@ -4,13 +4,14 @@ import MyCustom.MyDialog;
 import Application.CodeTier.BL.PhieuNhapService;
 import Application.AppTier.Model.PhieuNhap;
 import Application.AppTier.Resource.PhieuNhapResource;
+import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
 public class PhieuNhapController {
 
-    private PhieuNhapService phieuNhapDA = new PhieuNhapService();
+    private PhieuNhapService phieuNhapService = new PhieuNhapService();
     private ArrayList<PhieuNhap> listPhieuNhap = null;
     private ArrayList<PhieuNhapResource> listPhieuNhapView = new ArrayList();
 
@@ -19,7 +20,7 @@ public class PhieuNhapController {
     }
 
     public void docDanhSach() {
-        this.listPhieuNhap = phieuNhapDA.getListPhieuNhap();
+        this.listPhieuNhap = phieuNhapService.getListPhieuNhap();
         this.listPhieuNhapView.clear();
         for (PhieuNhap pn : listPhieuNhap) 
             this.listPhieuNhapView.add(new PhieuNhapResource(pn));
@@ -40,15 +41,20 @@ public class PhieuNhapController {
         int maNV = Integer.parseInt(NV[0]);
 
         PhieuNhap pn = new PhieuNhap();
+        long currentSystemTime = System.currentTimeMillis();
+        Timestamp currentTime = new Timestamp(0);
+        currentTime.setTime(currentSystemTime);
         pn.setMaNCC(maNCC);
         pn.setMaNV(maNV);
         pn.setTongTien(tongTien);
+        pn.setCreatedAt(currentTime);
+        pn.setUpdatedAt(currentTime);
 
-        return phieuNhapDA.themPhieuNhap(pn);
+        return phieuNhapService.themPhieuNhap(pn);
     }
 
     public int getLastID() {
-        return phieuNhapDA.getLastID();
+        return phieuNhapService.getLastID();
     }
 
     public PhieuNhapResource timPhieuNhap(String maPN) {

@@ -1,5 +1,7 @@
 package Application.AppTier.Resource;
 
+import Application.AppTier.Model.TaiKhoan;
+
 public class TaiKhoanResource {
 
     private int maNhanVien;
@@ -15,6 +17,13 @@ public class TaiKhoanResource {
         this.tenDangNhap = tenDangNhap;
         this.matKhau = matKhau;
         this.quyen = quyen;
+    }
+    
+    public TaiKhoanResource(TaiKhoan tk) {
+        this.maNhanVien = tk.getMaNhanVien();
+        this.tenDangNhap = tk.getTenDangNhap();
+        this.matKhau = tk.getMatKhau();
+        this.quyen = tk.getQuyen();
     }
 
     public int getMaNhanVien() {

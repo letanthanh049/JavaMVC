@@ -16,12 +16,14 @@ public class PhieuNhap {
     public PhieuNhap() {
     }
 
-    public PhieuNhap(int maPN, int maNCC, int maNV, Date ngayLap, int tongTien) {
+    public PhieuNhap(int maPN, int maNCC, int maNV, Date ngayLap, int tongTien, Timestamp createdAt, Timestamp updatedAt) {
         this.maPN = maPN;
         this.maNCC = maNCC;
         this.maNV = maNV;
         this.ngayLap = ngayLap;
         this.tongTien = tongTien;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
     }
 
     public int getMaPN() {

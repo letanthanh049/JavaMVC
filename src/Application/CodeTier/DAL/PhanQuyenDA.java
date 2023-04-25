@@ -24,6 +24,8 @@ public class PhanQuyenDA {
                 phanQuyen.setQlNhanVien(rs.getInt(4));
                 phanQuyen.setQlKhachHang(rs.getInt(5));
                 phanQuyen.setThongKe(rs.getInt(6));
+                phanQuyen.setCreatedAt(rs.getTimestamp(7));
+                phanQuyen.setUpdatedAt(rs.getTimestamp(8));
                 dspq.add(phanQuyen);
             }
             return dspq;
@@ -45,6 +47,8 @@ public class PhanQuyenDA {
                 phanQuyen.setQlNhanVien(rs.getInt(4));
                 phanQuyen.setQlKhachHang(rs.getInt(5));
                 phanQuyen.setThongKe(rs.getInt(6));
+                phanQuyen.setCreatedAt(rs.getTimestamp(7));
+                phanQuyen.setUpdatedAt(rs.getTimestamp(8));
                 return phanQuyen;
             }
         } catch (Exception e) {
@@ -54,14 +58,15 @@ public class PhanQuyenDA {
 
     public boolean suaQuyen(PhanQuyen phanQuyen) {
         try {
-            String sql = "UPDATE phanquyen SET NhapHang=?,QLSanPham=?,QLNhanVien=?,QLKhachHang=?,ThongKe=? WHERE Quyen=?";
+            String sql = "UPDATE phanquyen SET NhapHang=?,QLSanPham=?,QLNhanVien=?,QLKhachHang=?,ThongKe=?,UpdatedAt=? WHERE Quyen=?";
             PreparedStatement pre = MyConnect.conn.prepareStatement(sql);
             pre.setInt(1, phanQuyen.getNhapHang());
             pre.setInt(2, phanQuyen.getQlSanPham());
             pre.setInt(3, phanQuyen.getQlNhanVien());
             pre.setInt(4, phanQuyen.getQlKhachHang());
             pre.setInt(5, phanQuyen.getThongKe());
-            pre.setString(6, phanQuyen.getQuyen());
+            pre.setTimestamp(6, phanQuyen.getUpdatedAt());
+            pre.setString(7, phanQuyen.getQuyen());
             return pre.executeUpdate() > 0;
         } catch (Exception e) {
         }
@@ -70,7 +75,7 @@ public class PhanQuyenDA {
 
     public boolean themQuyen(PhanQuyen phanQuyen) {
         try {
-            String sql = "INSERT INTO phanquyen VALUES (?,?,?,?,?,?)";
+            String sql = "INSERT INTO phanquyen VALUES (?,?,?,?,?,?,?,?)";
             PreparedStatement pre = MyConnect.conn.prepareStatement(sql);
             pre.setString(1, phanQuyen.getQuyen());
             pre.setInt(2, phanQuyen.getNhapHang());
@@ -78,6 +83,8 @@ public class PhanQuyenDA {
             pre.setInt(4, phanQuyen.getQlNhanVien());
             pre.setInt(5, phanQuyen.getQlKhachHang());
             pre.setInt(6, phanQuyen.getThongKe());
+            pre.setTimestamp(7, phanQuyen.getCreatedAt());
+            pre.setTimestamp(8, phanQuyen.getUpdatedAt());
             return pre.executeUpdate() > 0;
         } catch (Exception e) {
         }

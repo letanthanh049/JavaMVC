@@ -14,11 +14,13 @@ public class TaiKhoan {
     public TaiKhoan() {
     }
 
-    public TaiKhoan(int maNhanVien, String tenDangNhap, String matKhau, String quyen) {
+    public TaiKhoan(int maNhanVien, String tenDangNhap, String matKhau, String quyen, Timestamp createdAt, Timestamp updatedAt) {
         this.maNhanVien = maNhanVien;
         this.tenDangNhap = tenDangNhap;
         this.matKhau = matKhau;
         this.quyen = quyen;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
     }
 
     public int getMaNhanVien() {

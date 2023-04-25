@@ -7,19 +7,26 @@ import Database.MyConnect;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.sql.Timestamp;
 
 public class TaiKhoanDA {
 
+    long currentSystemTime = System.currentTimeMillis();
+    Timestamp currentTime = new Timestamp(0);
+    
     public boolean themTaiKhoan(int maNV, String tenDangNhap, String quyen) {
         boolean result = false;
+        currentTime.setTime(currentSystemTime);
         try {
-            String sql = "INSERT INTO taikhoan(MaNV, TenDangNhap, MatKhau, Quyen) "
-                    + "VALUES (?, ?, ?, ?)";
+            String sql = "INSERT INTO taikhoan(MaNV, TenDangNhap, MatKhau, Quyen, CreatedAt, UpdatedAt) "
+                    + "VALUES (?, ?, ?, ?, ?, ?)";
             PreparedStatement pre = MyConnect.conn.prepareStatement(sql);
             pre.setInt(1, maNV);
             pre.setString(2, tenDangNhap);
             pre.setString(3, tenDangNhap);
             pre.setString(4, quyen);
+            pre.setTimestamp(5, currentTime);
+            pre.setTimestamp(6, currentTime);
             result = pre.executeUpdate() > 0;
         } catch (Exception e) {
             String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
@@ -56,11 +63,13 @@ public class TaiKhoanDA {
     }
 
     public boolean datLaiMatKhau(int maNV, String tenDangNhap) {
+        currentTime.setTime(currentSystemTime);
         try {
-            String sql = "UPDATE TaiKhoan SET MatKhau=? WHERE MaNV=?";
+            String sql = "UPDATE TaiKhoan SET MatKhau=?, UpdatedAt=? WHERE MaNV=?";
             PreparedStatement pre = MyConnect.conn.prepareStatement(sql);
             pre.setString(1, tenDangNhap);
-            pre.setInt(2, maNV);
+            pre.setTimestamp(2, currentTime);
+            pre.setInt(3, maNV);
             return pre.executeUpdate() > 0;
         } catch (Exception e) {
         }
@@ -68,11 +77,13 @@ public class TaiKhoanDA {
     }
 
     public boolean datLaiQuyen(int maNV, String quyen) {
+        currentTime.setTime(currentSystemTime);
         try {
-            String sql = "UPDATE TaiKhoan SET Quyen=? WHERE MaNV=?";
+            String sql = "UPDATE TaiKhoan SET Quyen=?, UpdatedAt=? WHERE MaNV=?";
             PreparedStatement pre = MyConnect.conn.prepareStatement(sql);
             pre.setString(1, quyen);
-            pre.setInt(2, maNV);
+            pre.setTimestamp(2, currentTime);
+            pre.setInt(3, maNV);
             return pre.executeUpdate() > 0;
         } catch (Exception e) {
         }
@@ -93,10 +104,12 @@ public class TaiKhoanDA {
     }
 
     public boolean khoaTaiKhoan(int maNV) {
+        currentTime.setTime(currentSystemTime);
         try {
-            String sql = "UPDATE TaiKhoan SET TrangThai=0 WHERE MaNV=?";
+            String sql = "UPDATE TaiKhoan SET TrangThai=0, UpdatedAt=? WHERE MaNV=?";
             PreparedStatement pre = MyConnect.conn.prepareStatement(sql);
-            pre.setInt(1, maNV);
+            pre.setTimestamp(1, currentTime);
+            pre.setInt(2, maNV);
             return pre.executeUpdate() > 0;
         } catch (Exception e) {
         }
@@ -104,10 +117,12 @@ public class TaiKhoanDA {
     }
 
     public boolean moKhoaTaiKhoan(int maNV) {
+        currentTime.setTime(currentSystemTime);
         try {
-            String sql = "UPDATE TaiKhoan SET TrangThai=1 WHERE MaNV=?";
+            String sql = "UPDATE TaiKhoan SET TrangThai=1, UpdatedAt=? WHERE MaNV=?";
             PreparedStatement pre = MyConnect.conn.prepareStatement(sql);
-            pre.setInt(1, maNV);
+            pre.setTimestamp(1, currentTime);
+            pre.setInt(2, maNV);
             return pre.executeUpdate() > 0;
         } catch (Exception e) {
         }
@@ -115,12 +130,14 @@ public class TaiKhoanDA {
     }
 
     public boolean doiMatKhau(String matKhauCu, String matKhauMoi) {
+        currentTime.setTime(currentSystemTime);
         try {
-            String sql = "UPDATE TaiKhoan SET MatKhau=? WHERE MaNV=? AND MatKhau=?";
+            String sql = "UPDATE TaiKhoan SET MatKhau=?, UpdatedAt=? WHERE MaNV=? AND MatKhau=?";
             PreparedStatement pre = MyConnect.conn.prepareStatement(sql);
             pre.setString(1, matKhauMoi);
-            pre.setInt(2, DangNhapController.taiKhoanLogin.getMaNhanVien());
-            pre.setString(3, matKhauCu);
+            pre.setTimestamp(2, currentTime);
+            pre.setInt(3, DangNhapController.taiKhoanLogin.getMaNhanVien());
+            pre.setString(4, matKhauCu);
             return pre.executeUpdate() > 0;
         } catch (Exception e) {
         }

@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 
 public class SanPhamDA {
@@ -26,6 +27,8 @@ public class SanPhamDA {
                 sp.setDonViTinh(rs.getString(5));
                 sp.setHinhAnh(rs.getString(6));
                 sp.setDonGia(rs.getInt(7));
+                sp.setCreatedAt(rs.getTimestamp(8));
+                sp.setUpdatedAt(rs.getTimestamp(9));
 
                 dssp.add(sp);
             }
@@ -52,6 +55,8 @@ public class SanPhamDA {
                 sp.setDonViTinh(rs.getString(5));
                 sp.setHinhAnh(rs.getString(6));
                 sp.setDonGia(rs.getInt(7));
+                sp.setCreatedAt(rs.getTimestamp(8));
+                sp.setUpdatedAt(rs.getTimestamp(9));
 
                 return sp;
             }
@@ -78,6 +83,8 @@ public class SanPhamDA {
                 sp.setDonViTinh(rs.getString(5));
                 sp.setHinhAnh(rs.getString(6));
                 sp.setDonGia(rs.getInt(7));
+                sp.setCreatedAt(rs.getTimestamp(8));
+                sp.setUpdatedAt(rs.getTimestamp(9));
 
                 dssp.add(sp);
             }
@@ -103,23 +110,36 @@ public class SanPhamDA {
     }
 
     public void capNhatSoLuongSP(int ma, int soLuongMat) {
+        long currentSystemTime = System.currentTimeMillis();
+        Timestamp currentTime = new Timestamp(0);
+        currentTime.setTime(currentSystemTime);
         SanPham sp = getSanPham(ma);
         int soLuong = sp.getSoLuong();
         sp.setSoLuong(soLuong + soLuongMat);
+        sp.setUpdatedAt(currentTime);
         try {
-            String sql = "UPDATE SanPham SET SoLuong=? WHERE MaSP=" + ma;
+//            String sql = "UPDATE SanPham SET SoLuong=? WHERE MaSP=" + ma;
+//            PreparedStatement pre = MyConnect.conn.prepareStatement(sql);
+//            pre.setInt(1, sp.getSoLuong());
+//            pre.executeUpdate();
+            String sql = "UPDATE SanPham SET SoLuong = SoLuong + ?, UpdatedAt = ? WHERE MaSP = ?";
             PreparedStatement pre = MyConnect.conn.prepareStatement(sql);
             pre.setInt(1, sp.getSoLuong());
+            pre.setTimestamp(2, sp.getUpdatedAt());
+            pre.setInt(3, ma);
             pre.executeUpdate();
         } catch (SQLException e) {
+            String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
+            System.out.println("Error occurred in method: " + methodName);
+            System.out.println(e);
         }
 
     }
 
     public boolean themSanPham(SanPham sp) {
         try {
-            String sql = "INSERT INTO SanPham(TenSP, MaLoai, SoLuong, DonViTinh, HinhAnh, DonGia) "
-                    + "VALUES (?, ?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO SanPham(TenSP, MaLoai, SoLuong, DonViTinh, HinhAnh, DonGia, CreatedAt, UpdatedAt) "
+                    + "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement pre = MyConnect.conn.prepareStatement(sql);
             pre.setString(1, sp.getTenSP());
             pre.setInt(2, sp.getMaLoai());
@@ -127,6 +147,8 @@ public class SanPhamDA {
             pre.setString(4, sp.getDonViTinh());
             pre.setString(5, sp.getHinhAnh());
             pre.setInt(6, sp.getDonGia());
+            pre.setTimestamp(7, sp.getCreatedAt());
+            pre.setTimestamp(8, sp.getUpdatedAt());
 
             pre.execute();
             return true;
@@ -137,9 +159,8 @@ public class SanPhamDA {
 
     public boolean nhapSanPhamTuExcel(SanPham sp) {
         try {
-            String sql = "DELETE * FROM sanpham; " +
-                    "INSERT INTO SanPham(TenSP, MaLoai, SoLuong, DonViTinh, HinhAnh, DonGia) "
-                    + "VALUES (?, ?, ?, ?, ?, ?)";
+            String sql  = "INSERT INTO SanPham(TenSP, MaLoai, SoLuong, DonViTinh, HinhAnh, DonGia, CreatedAt, UpdatedAt) "
+                    + "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement pre = MyConnect.conn.prepareStatement(sql);
             pre.setString(1, sp.getTenSP());
             pre.setInt(2, sp.getMaLoai());
@@ -147,10 +168,17 @@ public class SanPhamDA {
             pre.setString(4, sp.getDonViTinh());
             pre.setString(5, sp.getHinhAnh());
             pre.setInt(6, sp.getDonGia());
+            pre.setTimestamp(7, sp.getCreatedAt());
+            pre.setTimestamp(8, sp.getUpdatedAt());
 
             pre.execute();
             return true;
         } catch (SQLException e) {
+            String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
+            System.out.println("Error occurred in method: " + methodName);
+            System.out.println("Error message: " + e.getMessage());
+            System.out.println("SQL state: " + e.getSQLState());
+            System.out.println("Error code: " + e.getErrorCode());
         }
         return false;
     }
@@ -170,7 +198,7 @@ public class SanPhamDA {
         try {
             String sql = "UPDATE SanPham SET "
                     + "TenSP=?, "
-                    + "MaLoai=?, SoLuong=?, DonViTinh=?, HinhAnh=?, DonGia=? "
+                    + "MaLoai=?, SoLuong=?, DonViTinh=?, HinhAnh=?, DonGia=?, UpdatedAt=? "
                     + "WHERE MaSP=?";
             PreparedStatement pre = MyConnect.conn.prepareStatement(sql);
             pre.setString(1, sp.getTenSP());
@@ -179,12 +207,30 @@ public class SanPhamDA {
             pre.setString(4, sp.getDonViTinh());
             pre.setString(5, sp.getHinhAnh());
             pre.setInt(6, sp.getDonGia());
-            pre.setInt(7, sp.getMaSP());
+            pre.setTimestamp(7, sp.getUpdatedAt());
+            pre.setInt(8, sp.getMaSP());
 
             pre.execute();
             return true;
         } catch (SQLException e) {
             e.printStackTrace();
+        }
+        return false;
+    }
+
+    public boolean xoaToanBoSanPham() {
+        try {
+            String sql1 = "DELETE FROM SanPham;";
+            PreparedStatement pre1 = MyConnect.conn.prepareStatement(sql1);
+            pre1.execute();
+            String sql2 = "ALTER TABLE sanpham AUTO_INCREMENT = 1;";
+            PreparedStatement pre2 = MyConnect.conn.prepareStatement(sql2);
+            pre2.execute();
+            return true;
+        } catch (Exception e) {
+            String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
+            System.out.println("Error occurred in method: " + methodName);
+            System.out.println("Error message: " + e.getMessage());
         }
         return false;
     }

@@ -1,7 +1,6 @@
 package Application.AppTier.Controller;
 
 import Application.CodeTier.BL.DangNhapService;
-import Application.AppTier.Model.PhanQuyen;
 import Application.AppTier.Model.TaiKhoan;
 import MyCustom.MyDialog;
 

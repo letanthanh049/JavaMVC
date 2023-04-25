@@ -14,12 +14,14 @@ public class CTPhieuNhap {
     public CTPhieuNhap() {
     }
 
-    public CTPhieuNhap(int maPN, int maSP, int soLuong, int donGia, int thanhTien) {
+    public CTPhieuNhap(int maPN, int maSP, int soLuong, int donGia, int thanhTien, Timestamp createdAt, Timestamp updatedAt) {
         this.maPN = maPN;
         this.maSP = maSP;
         this.soLuong = soLuong;
         this.donGia = donGia;
         this.thanhTien = thanhTien;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
     }
 
     public int getMaPN() {

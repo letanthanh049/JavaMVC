@@ -2,7 +2,7 @@ package GUI;
 
 import Application.AppTier.Controller.PhanQuyenController;
 import Application.AppTier.Controller.TaiKhoanController;
-import Application.AppTier.Model.PhanQuyen;
+import Application.AppTier.Resource.PhanQuyenResource;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.util.ArrayList;
@@ -166,8 +166,8 @@ public class DlgCapTaiKhoan extends javax.swing.JDialog {
     private void loadDataCmbQuyen() {
         cmbQuyen.removeAllItems();
         phanQuyenController.docDanhSachQuyen();
-        ArrayList<PhanQuyen> dsq = phanQuyenController.getListQuyen();
-        for (PhanQuyen pq : dsq) {
+        ArrayList<PhanQuyenResource> dsq = phanQuyenController.getListQuyen();
+        for (PhanQuyenResource pq : dsq) {
             cmbQuyen.addItem(pq.getQuyen());
         }
     }

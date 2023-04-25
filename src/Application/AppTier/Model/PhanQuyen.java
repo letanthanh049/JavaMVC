@@ -16,13 +16,15 @@ public class PhanQuyen {
     public PhanQuyen() {
     }
 
-    public PhanQuyen(String quyen, int nhapHang, int qlSanPham, int qlNhanVien, int qlKhachHang, int thongKe) {
+    public PhanQuyen(String quyen, int nhapHang, int qlSanPham, int qlNhanVien, int qlKhachHang, int thongKe, Timestamp createdAt, Timestamp updatedAt) {
         this.quyen = quyen;
         this.nhapHang = nhapHang;
         this.qlSanPham = qlSanPham;
         this.qlNhanVien = qlNhanVien;
         this.qlKhachHang = qlKhachHang;
         this.thongKe = thongKe;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
     }
 
     public String getQuyen() {

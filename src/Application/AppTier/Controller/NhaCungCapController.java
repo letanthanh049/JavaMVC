@@ -4,13 +4,13 @@ import Application.CodeTier.BL.NhaCungCapService;
 import Application.AppTier.Model.NhaCungCap;
 import Application.AppTier.Resource.NhaCungCapResource;
 import MyCustom.MyDialog;
+import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class NhaCungCapController {
 
-    private NhaCungCapService nhaCungCapDA = new NhaCungCapService();
+    private NhaCungCapService nccService = new NhaCungCapService();
     private ArrayList<NhaCungCap> listNhaCungCap = null;
     private ArrayList<NhaCungCapResource> listNhaCungCapView = new ArrayList();
 
@@ -19,7 +19,7 @@ public class NhaCungCapController {
     }
 
     public void docDanhSach() {
-        this.listNhaCungCap = nhaCungCapDA.getListNhaCungCap();
+        this.listNhaCungCap = nccService.getListNhaCungCap();
         this.listNhaCungCapView.clear();
         for (NhaCungCap ncc : listNhaCungCap) 
             this.listNhaCungCapView.add(new NhaCungCapResource(ncc));
@@ -48,10 +48,15 @@ public class NhaCungCapController {
         }
 
         NhaCungCap ncc = new NhaCungCap();
+        long currentSystemTime = System.currentTimeMillis();
+        Timestamp currentTime = new Timestamp(0);
+        currentTime.setTime(currentSystemTime);
         ncc.setTenNCC(tenNCC);
         ncc.setDiaChi(diaChi);
         ncc.setDienThoai(dienThoai);
-        boolean flag = nhaCungCapDA.addNCC(ncc);
+        ncc.setCreatedAt(currentTime);
+        ncc.setUpdatedAt(currentTime);
+        boolean flag = nccService.addNCC(ncc);
         if (flag) {
             new MyDialog("Thêm mới thành công!", MyDialog.SUCCESS_DIALOG);
         } else {
@@ -76,14 +81,18 @@ public class NhaCungCapController {
         }
 
         int ma = Integer.parseInt(maNCC);
+        long currentSystemTime = System.currentTimeMillis();
+        Timestamp currentTime = new Timestamp(0);
+        currentTime.setTime(currentSystemTime);
 
         NhaCungCap ncc = new NhaCungCap();
         ncc.setMaNCC(ma);
         ncc.setTenNCC(tenNCC);
         ncc.setDiaChi(diaChi);
         ncc.setDienThoai(dienThoai);
+        ncc.setUpdatedAt(currentTime);
         
-        boolean flag = nhaCungCapDA.updateNCC(ncc);
+        boolean flag = nccService.updateNCC(ncc);
 
         if (flag) {
             new MyDialog("Sửa thành công!", MyDialog.SUCCESS_DIALOG);

@@ -1,4 +1,4 @@
-    package GUI;
+package GUI;
 
 import MyCustom.XuLyFileExcel;
 import MyCustom.MyDialog;
@@ -10,7 +10,7 @@ import static Main.Main.changLNF;
 import Application.AppTier.Controller.NhanVienController;
 import Application.AppTier.Controller.PhanQuyenController;
 import Application.AppTier.Controller.TaiKhoanController;
-import Application.AppTier.Model.PhanQuyen;
+import Application.AppTier.Resource.PhanQuyenResource;
 import Application.AppTier.Resource.NhanVienResource;
 
 import java.awt.BorderLayout;
@@ -39,6 +39,7 @@ public class PnQuanLyNhanVienGUI extends JPanel {
 
     private PhanQuyenController phanQuyenController = new PhanQuyenController();
     private NhanVienController nhanVienController = new NhanVienController();
+    private TaiKhoanController taiKhoanController = new TaiKhoanController();
 
     JLabel lblTabbedNhanVien, lblTabbedQuyen;
     final ImageIcon tabbedSelected = new ImageIcon("image/ManagerUI/tabbed-btn--selected.png");
@@ -589,16 +590,16 @@ public class PnQuanLyNhanVienGUI extends JPanel {
     }
 
     private void xuLyHienThiChiTietQuyen() {
-        ArrayList<PhanQuyen> dsq = phanQuyenController.getListQuyen();
-        PhanQuyen phanQuyen = new PhanQuyen();
-        for (PhanQuyen pq : dsq) {
+        ArrayList<PhanQuyenResource> dsq = phanQuyenController.getListQuyen();
+        PhanQuyenResource phanQuyenResource = new PhanQuyenResource();
+        for (PhanQuyenResource pq : dsq) {
             if (pq.getQuyen().equals(cmbQuyen.getSelectedItem())) {
-                phanQuyen.setQuyen(pq.getQuyen());
-                phanQuyen.setNhapHang(pq.getNhapHang());
-                phanQuyen.setQlSanPham(pq.getQlSanPham());
-                phanQuyen.setQlNhanVien(pq.getQlNhanVien());
-                phanQuyen.setQlKhachHang(pq.getQlKhachHang());
-                phanQuyen.setThongKe(pq.getThongKe());
+                phanQuyenResource.setQuyen(pq.getQuyen());
+                phanQuyenResource.setNhapHang(pq.getNhapHang());
+                phanQuyenResource.setQlSanPham(pq.getQlSanPham());
+                phanQuyenResource.setQlNhanVien(pq.getQlNhanVien());
+                phanQuyenResource.setQlKhachHang(pq.getQlKhachHang());
+                phanQuyenResource.setThongKe(pq.getThongKe());
                 break;
             }
         }
@@ -607,29 +608,29 @@ public class PnQuanLyNhanVienGUI extends JPanel {
         ckbQLNhanVien.setSelected(false);
         ckbQLKhachHang.setSelected(false);
         ckbThongKe.setSelected(false);
-        if (phanQuyen.getNhapHang() == 1) {
+        if (phanQuyenResource.getNhapHang() == 1) {
             ckbNhapHang.setSelected(true);
         }
-        if (phanQuyen.getQlSanPham() == 1) {
+        if (phanQuyenResource.getQlSanPham() == 1) {
             ckbQLSanPham.setSelected(true);
         }
-        if (phanQuyen.getQlNhanVien() == 1) {
+        if (phanQuyenResource.getQlNhanVien() == 1) {
             ckbQLNhanVien.setSelected(true);
         }
-        if (phanQuyen.getQlKhachHang() == 1) {
+        if (phanQuyenResource.getQlKhachHang() == 1) {
             ckbQLKhachHang.setSelected(true);
         }
-        if (phanQuyen.getThongKe() == 1) {
+        if (phanQuyenResource.getThongKe() == 1) {
             ckbThongKe.setSelected(true);
         }
     }
 
     private void loadDataCmbQuyen() {
         phanQuyenController.docDanhSachQuyen();
-        ArrayList<PhanQuyen> dsq = phanQuyenController.getListQuyen();
+        ArrayList<PhanQuyenResource> dsq = phanQuyenController.getListQuyen();
         cmbQuyen.removeAllItems();
         cmbQuyen.addItem("Chọn quyền");
-        for (PhanQuyen pq : dsq) {
+        for (PhanQuyenResource pq : dsq) {
             cmbQuyen.addItem(pq.getQuyen());
         }
     }
@@ -781,7 +782,5 @@ public class PnQuanLyNhanVienGUI extends JPanel {
             dtmNhanVien.addRow(vec);
         }
     }
-
-    TaiKhoanController taiKhoanController = new TaiKhoanController();
 
 }

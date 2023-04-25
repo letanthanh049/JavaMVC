@@ -14,12 +14,14 @@ public class CTHoaDon {
     public CTHoaDon() {
     }
 
-    public CTHoaDon(int maHD, int maSP, int soLuong, int donGia, int thanhTien) {
+    public CTHoaDon(int maHD, int maSP, int soLuong, int donGia, int thanhTien, Timestamp createdAt, Timestamp updatedAt) {
         this.maHD = maHD;
         this.maSP = maSP;
         this.soLuong = soLuong;
         this.donGia = donGia;
         this.thanhTien = thanhTien;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
     }
 
     public int getMaHD() {

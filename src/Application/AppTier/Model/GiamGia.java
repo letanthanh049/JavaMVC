@@ -17,13 +17,15 @@ public class GiamGia {
     public GiamGia() {
     }
 
-    public GiamGia(int maGiam, String tenGiamGia, int phanTramGiam, int dieuKien, Date ngayBD, Date ngayKT) {
+    public GiamGia(int maGiam, String tenGiamGia, int phanTramGiam, int dieuKien, Date ngayBD, Date ngayKT, Timestamp createdAt, Timestamp updatedAt) {
         this.maGiam = maGiam;
         this.tenGiamGia = tenGiamGia;
         this.phanTramGiam = phanTramGiam;
         this.dieuKien = dieuKien;
         this.ngayBD = ngayBD;
         this.ngayKT = ngayKT;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
     }
 
     public int getMaGiam() {

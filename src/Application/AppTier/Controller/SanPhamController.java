@@ -4,13 +4,14 @@ import Application.CodeTier.BL.SanPhamService;
 import Application.AppTier.Model.SanPham;
 import Application.AppTier.Resource.SanPhamResource;
 import MyCustom.MyDialog;
+import java.sql.Timestamp;
 
 import java.util.ArrayList;
 
 public class SanPhamController {
 
     private ArrayList<SanPham> listSanPham = null;
-    private SanPhamService spDA = new SanPhamService();
+    private SanPhamService spService = new SanPhamService();
     private ArrayList<SanPhamResource> listSanPhamView = new ArrayList();
 
     public SanPhamController() {
@@ -18,7 +19,7 @@ public class SanPhamController {
     }
 
     public void docListSanPham() {
-        this.listSanPham = spDA.getListSanPham();
+        this.listSanPham = spService.getListSanPham();
         this.listSanPhamView.clear();
         for (SanPham sp : listSanPham)
             this.listSanPhamView.add(new SanPhamResource(sp));
@@ -76,11 +77,11 @@ public class SanPhamController {
 
     public String getAnh(String ma) {
         int maSP = Integer.parseInt(ma);
-        return spDA.getAnh(maSP);
+        return spService.getAnh(maSP);
     }
 
     public void capNhatSoLuongSP(int ma, int soLuongMat) {
-        spDA.capNhatSoLuongSP(ma, soLuongMat);
+        spService.capNhatSoLuongSP(ma, soLuongMat);
     }
 
     public boolean themSanPham(String ten,
@@ -110,6 +111,9 @@ public class SanPhamController {
                 new MyDialog("Vui lòng chọn Loại sản phẩm!", MyDialog.ERROR_DIALOG);
                 return false;
             }
+            long currentSystemTime = System.currentTimeMillis();
+            Timestamp currentTime = new Timestamp(0);
+            currentTime.setTime(currentSystemTime);
             SanPham sp = new SanPham();
             sp.setTenSP(ten);
             sp.setMaLoai(maLoai);
@@ -117,8 +121,10 @@ public class SanPhamController {
             sp.setDonViTinh(donViTinh);
             sp.setHinhAnh(anh);
             sp.setDonGia(donGiaSP);
+            sp.setCreatedAt(currentTime);
+            sp.setUpdatedAt(currentTime);
 
-            if (spDA.themSanPham(sp)) {
+            if (spService.themSanPham(sp)) {
                 new MyDialog("Thêm thành công!", MyDialog.SUCCESS_DIALOG);
                 return true;
             } else {
@@ -145,6 +151,9 @@ public class SanPhamController {
             donGia = donGia.replace(",", "");
             int donGiaSP = Integer.parseInt(donGia);
 
+            long currentSystemTime = System.currentTimeMillis();
+            Timestamp currentTime = new Timestamp(0);
+            currentTime.setTime(currentSystemTime);
             SanPham sp = new SanPham();
             sp.setTenSP(ten);
             sp.setMaLoai(maLoai);
@@ -152,13 +161,15 @@ public class SanPhamController {
             sp.setDonViTinh(donViTinh);
             sp.setHinhAnh(anh);
             sp.setDonGia(donGiaSP);
+            sp.setCreatedAt(currentTime);
+            sp.setUpdatedAt(currentTime);
 
-            spDA.nhapSanPhamTuExcel(sp);
+            spService.nhapSanPhamTuExcel(sp);
         } catch (Exception e) {
         }
         return false;
     }
-
+    
     public boolean xoaSanPham(String ma) {
         if (ma.trim().equals("")) {
             new MyDialog("Chưa chọn sản phẩm để xoá!", MyDialog.ERROR_DIALOG);
@@ -166,7 +177,7 @@ public class SanPhamController {
         }
 
         int maSP = Integer.parseInt(ma);
-        if (spDA.xoaSanPham(maSP)) {
+        if (spService.xoaSanPham(maSP)) {
             new MyDialog("Xoá thành công!", MyDialog.SUCCESS_DIALOG);
             return true;
         }
@@ -210,6 +221,9 @@ public class SanPhamController {
                 return false;
             }
 
+            long currentSystemTime = System.currentTimeMillis();
+            Timestamp currentTime = new Timestamp(0);
+            currentTime.setTime(currentSystemTime);
             SanPham sp = new SanPham();
             sp.setMaSP(maSP);
             sp.setTenSP(ten);
@@ -218,8 +232,9 @@ public class SanPhamController {
             sp.setDonViTinh(donViTinh);
             sp.setHinhAnh(anh);
             sp.setDonGia(donGiaSP);
+            sp.setUpdatedAt(currentTime);
 
-            if (spDA.suaSanPham(sp)) {
+            if (spService.suaSanPham(sp)) {
                 new MyDialog("Sửa thành công!", MyDialog.SUCCESS_DIALOG);
                 return true;
             } else {
@@ -239,5 +254,9 @@ public class SanPhamController {
             }
         }
         return "";
+    }
+    
+    public boolean xoaToanBoSanPham() {
+        return spService.xoaToanBoSanPham();
     }
 }
