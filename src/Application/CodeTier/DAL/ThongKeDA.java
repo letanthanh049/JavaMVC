@@ -30,25 +30,26 @@ public class ThongKeDA {
 
     private ArrayList<SanPham> getTopBanChay() {
         try {
-            String sql = "SELECT MaSP, DaBan FROM (" +
-                    "SELECT MaSP, SUM(SoLuong) AS DaBan FROM " +
-                    "cthoadon GROUP BY MaSP" +
-                    ") temp " +
+            String sql = "SELECT sp.MaSP, sp.TenSP, SUM(cthd.SoLuong) AS DaBan FROM sanpham sp " +
+                    "RIGHT JOIN cthoadon cthd ON sp.MaSP = cthd.MaSP " +
+                    "GROUP BY sp.MaSP, sp.TenSP " +
                     "ORDER BY DaBan " +
                     "DESC LIMIT 5";
             Statement st = MyConnect.conn.createStatement();
             ResultSet rs = st.executeQuery(sql);
             ArrayList<SanPham> dssp = new ArrayList<>();
-            SanPhamController spBUS = new SanPhamController();
             while (rs.next()) {
                 SanPham sp = new SanPham();
                 sp.setMaSP(rs.getInt(1));
-                sp.setSoLuong(rs.getInt(2));
-                sp.setTenSP(spBUS.getTenSP(sp.getMaSP()));
+                sp.setTenSP(rs.getString(2));
+                sp.setSoLuong(rs.getInt(3));
                 dssp.add(sp);
             }
             return dssp;
         } catch (Exception e) {
+            String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
+            System.out.println("Error occurred in method: " + methodName);
+            System.out.println(e);
         }
         return null;
     }
