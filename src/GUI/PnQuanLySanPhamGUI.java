@@ -253,9 +253,9 @@ public class PnQuanLySanPhamGUI extends JPanel {
         columnModelBanHang.getColumn(1).setPreferredWidth(282);
         columnModelBanHang.getColumn(2).setPreferredWidth(120);
         columnModelBanHang.getColumn(3).setPreferredWidth(85);
-        columnModelBanHang.getColumn(4).setPreferredWidth(138);
-        columnModelBanHang.getColumn(5).setPreferredWidth(140);
-        columnModelBanHang.getColumn(6).setPreferredWidth(0);
+        columnModelBanHang.getColumn(4).setPreferredWidth(100);
+        columnModelBanHang.getColumn(5).setPreferredWidth(105);
+        columnModelBanHang.getColumn(6).setPreferredWidth(73);
 
         JScrollPane scrTblSanPham = new JScrollPane(tblSanPham);
         //</editor-fold>

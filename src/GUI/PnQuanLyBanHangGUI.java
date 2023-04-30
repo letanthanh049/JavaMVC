@@ -495,11 +495,12 @@ public class PnQuanLyBanHangGUI extends JPanel {
         txtGhiChu.setEditable(false);
 
         JPanel pnListHoaDon = new TransparentPanel();
+        pnListHoaDon.setLayout(new BorderLayout());
         listHoaDon = new JList<>();
         listHoaDon.setFont(font);
-        listHoaDon.setPreferredSize(new Dimension(
-                (int) pnCTHoaDonLeft.getPreferredSize().getWidth() - 22,
-                400));
+//        listHoaDon.setPreferredSize(new Dimension(
+//                (int) pnCTHoaDonLeft.getPreferredSize().getWidth() - 22,
+//                400));
         loadDataListHoaDon();
         JScrollPane scrHoaDon = new JScrollPane(listHoaDon,
                 JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,

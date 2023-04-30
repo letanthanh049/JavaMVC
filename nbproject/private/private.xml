@@ -5,7 +5,9 @@
         <group>
             <file>file:/G:/Study/Language%20Programming/Java/Thuc%20hanh/QuanlyPizza/src/Application/CodeTier/DAL/TaiKhoanDA.java</file>
             <file>file:/G:/Study/Language%20Programming/Java/Thuc%20hanh/QuanlyPizza/src/Application/AppTier/Controller/SanPhamController.java</file>
-            <file>file:/G:/Study/Language%20Programming/Java/Thuc%20hanh/QuanlyPizza/src/GUI/PnQuanLySanPhamGUI.java</file>
+            <file>file:/G:/Study/Language%20Programming/Java/Thuc%20hanh/QuanlyPizza/src/GUI/PnQuanLyBanHangGUI.java</file>
+            <file>file:/G:/Study/Language%20Programming/Java/Thuc%20hanh/QuanlyPizza/src/GUI/PnQuanLyThongKeGUI.java</file>
+            <file>file:/G:/Study/Language%20Programming/Java/Thuc%20hanh/QuanlyPizza/src/Application/CodeTier/DAL/ThongKeDA.java</file>
             <file>file:/G:/Study/Language%20Programming/Java/Thuc%20hanh/QuanlyPizza/src/Application/CodeTier/DAL/SanPhamDA.java</file>
         </group>
     </open-files>
